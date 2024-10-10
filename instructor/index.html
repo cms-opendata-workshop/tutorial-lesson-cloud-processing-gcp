@@ -319,8 +319,8 @@ is needed. You will not be charged during the free trial.</p>
 </section><section><h2 class="section-heading" id="software-setup">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>In this tutorial, we expect that you will be using a Linux shell on
 native Linux, macOS or through WSL2 on Windows. If you do not have any
-of them available, you can work through Google Cloud Shell but the
-instructions in this tutorial are for Linux shell.</p>
+of them available, you can work through <a href="https://cloud.google.com/shell/docs" class="external-link">Google Cloud Shell</a> but
+the instructions in this tutorial are for the Linux shell.</p>
 <p>You should be familiar with basic Linux shell commands and have
 <code>git</code> available.</p>
 <div class="section level3">
@@ -363,12 +363,27 @@ Desktop</a>.</p>
 <div class="section level3">
 <h3 id="deploying-resources-terraform">Deploying resources: Terraform<a class="anchor" aria-label="anchor" href="#deploying-resources-terraform"></a></h3>
 <p>This tutorial uses Terraform scripts to facilitate the creation and
-deletion of GCP resources. Install it to your Linux distribution
-following <a href="https://developer.hashicorp.com/terraform/install" class="external-link">these
-instructions</a>.</p>
+deletion of GCP resources. Install it following <a href="https://developer.hashicorp.com/terraform/install" class="external-link">these
+instructions</a> (WSL2 users should follow the Linux instructions).</p>
+</div>
+<div class="section level3">
+<h3 id="optional-for-building-a-customized-cmssw-container-image-docker">Optional for building a customized CMSSW container image:
+Docker<a class="anchor" aria-label="anchor" href="#optional-for-building-a-customized-cmssw-container-image-docker"></a></h3>
+<p>This tutorial uses a CMSSW open data container image with the <a href="https://opendata.cern.ch/record/12504" class="external-link">pfnano producer code</a>
+downloaded and compiled. You do not need to install Docker to use it in
+the context of this tutorial. You need Docker, if you want to modify the
+code with your selections and build a new container image.</p>
 </div>
 <div class="section level3">
 <h3 id="optional-for-building-an-image-disk-go">Optional for building an image disk: go<a class="anchor" aria-label="anchor" href="#optional-for-building-an-image-disk-go"></a></h3>
+<p>A secondary boot disk image with the CMSSW container image
+preinstalled makes the processing workflow step start immediately.
+Otherwise, the image needs to be pulled at the start of the processing
+step and done for each cluster node separately.</p>
+<p>This disk image can be created and stored using GCP resources. A
+<code>go</code> script is <a href="https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder" class="external-link">available</a>
+for creating the image. To run it, install <code>go</code> following <a href="https://go.dev/doc/install" class="external-link">these instructions</a> (WSL2 users
+should follow the Linux instructions).</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
