@@ -2,53 +2,24 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
 
-## Data Sets
+## Google Cloud account
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+[Create an account](https://accounts.google.com/) for Google Cloud Platform (GCP). The login is an e-mail address: it can be your existing gmail account, but you can create an account with another e-mail address.
 
-## Software Setup
+If you want to use the [free trial](https://cloud.google.com/free= resources ($300), you need to activate them. A billing account with a credit card number is needed. You will not be charged during the free trial.
 
-::::::::::::::::::::::::::::::::::::::: discussion
+## Software setup
 
-### Details
+In this tutorial, we expect that you will be using a Linux shell on native Linux, macOS or through WSL2 on Windows. If you do have any of them available, you can work through Google Cloud Shell but the instructions in this tutorial are for Linux shell.
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+You should be familiar with basic Linux shell commands and have `git` available.
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+### GCP Command-line interface: gcloud
 
-:::::::::::::::: spoiler
+### Kubernetes command-line tool: kubectl
 
-### Windows
+### Deploying resources: Terraform
 
-Use PuTTY
-
-::::::::::::::::::::::::
-
-:::::::::::::::: spoiler
-
-### MacOS
-
-Use Terminal.app
-
-::::::::::::::::::::::::
-
-
-:::::::::::::::: spoiler
-
-### Linux
-
-Use Terminal
-
-::::::::::::::::::::::::
+### Optional for building an image disk: go
 
