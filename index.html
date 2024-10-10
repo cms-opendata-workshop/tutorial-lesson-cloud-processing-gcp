@@ -297,24 +297,59 @@ any links that you are not going to use.
 Google Cloud Platform (GCP). The login is an e-mail address: it can be
 your existing gmail account, but you can create an account with another
 e-mail address.</p>
-<p>If you want to use the [free trial](<a href="https://cloud.google.com/free=" class="external-link uri">https://cloud.google.com/free=</a> resources ($300), you
-need to activate them. A billing account with a credit card number is
-needed. You will not be charged during the free trial.</p>
+<p>If you want to use the <a href="https://cloud.google.com/free=%20resources" class="external-link">free trial</a> ($300),
+you need to activate them. A billing account with a credit card number
+is needed. You will not be charged during the free trial.</p>
 </section><section><h2 class="section-heading" id="software-setup">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>In this tutorial, we expect that you will be using a Linux shell on
-native Linux, macOS or through WSL2 on Windows. If you do have any of
-them available, you can work through Google Cloud Shell but the
+native Linux, macOS or through WSL2 on Windows. If you do not have any
+of them available, you can work through Google Cloud Shell but the
 instructions in this tutorial are for Linux shell.</p>
 <p>You should be familiar with basic Linux shell commands and have
 <code>git</code> available.</p>
 <div class="section level3">
 <h3 id="gcp-command-line-interface-gcloud">GCP Command-line interface: gcloud<a class="anchor" aria-label="anchor" href="#gcp-command-line-interface-gcloud"></a></h3>
+<p>Follow <a href="https://cloud.google.com/sdk/docs/install" class="external-link">these
+instructions</a> to install glcoud, the command-line interface to GCP
+resources.</p>
+<p>Initialize it with</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> init</span></code></pre>
+</div>
+<p>List your project(s) with</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> projects list</span></code></pre>
+</div>
+<p>Check the current project with</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+</div>
+<p>Change the project if needed with:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> config set project <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="kubernetes-command-line-tool-kubectl">Kubernetes command-line tool: kubectl<a class="anchor" aria-label="anchor" href="#kubernetes-command-line-tool-kubectl"></a></h3>
+<p><code>kubectl</code> is the tool to interact with the Kubernetes
+clusters. Install it either <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management" class="external-link">on
+its own</a> or with <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
+Desktop</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="deploying-resources-terraform">Deploying resources: Terraform<a class="anchor" aria-label="anchor" href="#deploying-resources-terraform"></a></h3>
+<p>This tutorial uses Terraform scripts to facilitate the creation and
+deletion of GCP resources. Install it to your Linux distribution
+following <a href="https://developer.hashicorp.com/terraform/install" class="external-link">these
+instructions</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="optional-for-building-an-image-disk-go">Optional for building an image disk: go<a class="anchor" aria-label="anchor" href="#optional-for-building-an-image-disk-go"></a></h3>
