@@ -15,10 +15,10 @@ carpentry: 'incubator'
 varnish: 'cms-opendata-workshop/varnish'
 
 # Overall title for pages.
-title: 'Lesson Title' # FIXME
+title: 'CMS Open Data processing in Google Cloud Platform (GCP)' # FIXME
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME
+created: 2024-10-10 # FIXME
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, CMS' # FIXME
@@ -31,7 +31,7 @@ life_cycle: 'pre-alpha' # FIXME
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/cms-opendata-workshop/workbench-template-md' # FIXME
+source: 'https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp' # FIXME
 
 # Default branch of your lesson
 branch: 'main'
