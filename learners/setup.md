@@ -11,7 +11,7 @@ If you want to use the [free trial](https://cloud.google.com/free= resources) ($
 
 ## Software setup
 
-In this tutorial, we expect that you will be using a Linux shell on native Linux, macOS or through WSL2 on Windows. If you do not have any of them available, you can work through Google Cloud Shell but the instructions in this tutorial are for Linux shell.
+In this tutorial, we expect that you will be using a Linux shell on native Linux, macOS or through WSL2 on Windows. If you do not have any of them available, you can work through [Google Cloud Shell](https://cloud.google.com/shell/docs) but the instructions in this tutorial are for the Linux shell.
 
 You should be familiar with basic Linux shell commands and have `git` available.
 
@@ -49,7 +49,17 @@ gcloud config set project <PROJECT_ID>
 
 ### Deploying resources: Terraform
 
-This tutorial uses Terraform scripts to facilitate the creation and deletion of GCP resources. Install it to your Linux distribution following [these instructions](https://developer.hashicorp.com/terraform/install).
+This tutorial uses Terraform scripts to facilitate the creation and deletion of GCP resources. Install it following [these instructions](https://developer.hashicorp.com/terraform/install) (WSL2 users should follow the Linux instructions).
+
+### Optional for building a customized CMSSW container image: Docker
+
+This tutorial uses a CMSSW open data container image with the [pfnano producer code](https://opendata.cern.ch/record/12504) downloaded and compiled. You do not need to install Docker to use it in the context of this tutorial. You need Docker, if you want to modify the code with your selections and build a new container image. 
 
 ### Optional for building an image disk: go
+
+A secondary boot disk image with the CMSSW container image preinstalled makes the processing workflow step start immediately. Otherwise, the image needs to be pulled at the start of the processing step and done for each cluster node separately. 
+
+This disk image can be created and stored using GCP resources. A `go` script is [available](https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder) for creating the image. To run it, install `go` following [these instructions](https://go.dev/doc/install) (WSL2 users should follow the Linux instructions).
+
+
 
