@@ -51,6 +51,10 @@ gcloud config set project <PROJECT_ID>
 
 This tutorial uses Terraform scripts to facilitate the creation and deletion of GCP resources. Install it following [these instructions](https://developer.hashicorp.com/terraform/install) (WSL2 users should follow the Linux instructions).
 
+### Running workflows: Argo CLI
+
+The example processing workflow is defined as an "Argo workflow". To be able to submit it and follow its progress from your terminal, download Argo command-line interface following [these instructions](https://github.com/argoproj/argo-workflows/releases/). Take note that what is under "Controller and Server" will be done once the cluster is available, do not do it yet.
+
 ### Optional for building a customized CMSSW container image: Docker
 
 This tutorial uses a CMSSW open data container image with the [pfnano producer code](https://opendata.cern.ch/record/12504) downloaded and compiled. You do not need to install Docker to use it in the context of this tutorial. You need Docker, if you want to modify the code with your selections and build a new container image. 
