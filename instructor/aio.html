@@ -371,8 +371,8 @@ use as an <a href="https://opendata.cern.ch/record/12504" class="external-link">
 processing</a> of CMS open data MiniAOD to a “custom” NanoAOD, including
 more information than the standard NanoAOD but still in the same flat
 file format.</p>
-<p>We expect that you would want to download the output files to your
-local area and analyse the with your owm resources. Note that analysis
+<p>We assume that you would want to download the output files to your
+local area and analyse them with your own resources. Note that analysis
 using GCP resources with your files stored on GCP is also possible, but
 is not covered in this tutorial.</p>
 </section><section><h2 class="section-heading" id="google-cloud-platform">Google Cloud Platform<a class="anchor" aria-label="anchor" href="#google-cloud-platform"></a>
@@ -384,13 +384,21 @@ Google Cloud Platform (GCP) is one of them. You define the resources
 that you need and pay for what you use. As many other such resource
 providers (for example AWS, Azure, OHV), it offers some free
 getting-started “credits”.</p>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
 <p>This tutorial was set up using <a href="https://cloud.google.com/edu/researchers" class="external-link">Google Cloud Research
 credits</a>. You can apply for similar credits for your research
-projets. Take note that the credit has to be used within 12 months.</p>
+projects. Take note that the credit has to be used within 12 months.</p>
+</div>
+</div>
+</div>
 <p>You can create, manage and delete resources using the Google Cloud
-Console (a Web UI) or a command-line tool <code>gcloud</code>. In this
-tutorial, we use the command-line tool or Terraform scripts for most of
-the operations.</p>
+Console (a Web UI) or a command-line tool <code>gcloud</code>.</p>
 <p>In this tutorial, we use <code>gcloud</code> commands to create the
 persistent storage for the output data, and a Terraform script to
 provision the Kubernetes cluster where the processing workflow will
