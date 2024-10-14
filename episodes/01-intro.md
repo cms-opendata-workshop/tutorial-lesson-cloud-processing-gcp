@@ -33,16 +33,21 @@ To learn about CMS open data and the different data formats, work through the tu
 
 This is an option for you if you do not have enough computing resources and want to run some heavy processing. In this tutorial, we use as an [example processing](https://opendata.cern.ch/record/12504) of CMS open data MiniAOD to a "custom" NanoAOD, including more information than the standard NanoAOD but still in the same flat file format. 
 
-We expect that you would want to download the output files to your local area and analyse the with your owm resources. Note that analysis using GCP resources with your files stored on GCP is also possible, but is not covered in this tutorial.
+We assume that you would want to download the output files to your local area and analyse them with your own resources. Note that analysis using GCP resources with your files stored on GCP is also possible, but is not covered in this tutorial.
 
 
 ## Google Cloud Platform
 
 Public cloud providers are companies that offers computing resources and services over the internet to multiple users or organizations. Google Cloud Platform (GCP) is one of them. You define the resources that you need and pay for what you use. As many other such resource providers (for example AWS, Azure, OHV), it offers some free getting-started "credits".
 
-This tutorial was set up using [Google Cloud Research credits](https://cloud.google.com/edu/researchers). You can apply for similar credits for your research projets. Take note that the credit has to be used within 12 months.
+::::::::::::::::::::::::::::::::::::: callout
 
-You can create, manage and delete resources using the Google Cloud Console (a Web UI) or a command-line tool `gcloud`. In this tutorial, we use the command-line tool or Terraform scripts for most of the operations.
+This tutorial was set up using [Google Cloud Research credits](https://cloud.google.com/edu/researchers). You can apply for similar credits for your research projects. Take note that the credit has to be used within 12 months.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+You can create, manage and delete resources using the Google Cloud Console (a Web UI) or a command-line tool `gcloud`. 
 
 In this tutorial, we use `gcloud` commands to create the persistent storage for the output data, and a Terraform script to provision the Kubernetes cluster where the processing workflow will run.
 
