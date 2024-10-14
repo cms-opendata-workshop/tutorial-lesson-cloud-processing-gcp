@@ -63,7 +63,7 @@ contact: 'cms-dpoa-coordinator@cern.ch' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
+- 01-intro.md
 
 # Information for Learners
 learners: 
