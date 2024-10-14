@@ -55,7 +55,7 @@ In this tutorial, we use `gcloud` commands to create the persistent storage for 
 
 [Terraform](https://www.terraform.io/) is a tool to define, provision, and manage cloud infrastructure using configuration scripts. 
 
-In this tutorial, we use Terraform scripts to create the Kubernetes cluster in a single step. After the workflow finishes, it is easy to delete the resources similary, in a single step.
+In this tutorial, we use Terraform scripts to create the Kubernetes cluster in a single step. The advantage - compared to plain command-line `gcloud` commands - is that we can easily configure input variables. Also, after the workflow finishes, it is easy to delete the resources in a single step.
 
 ## Kubernetes
 
@@ -68,6 +68,35 @@ In this tutorial, we use `kubectl` commands to set up some services and to obser
 The processing workflow consist of some sequential and parallel steps. We use [Argo Workflows](https://argoproj.github.io/workflows/) to define (or "orchestrate") the workflow steps.
 
 In this tutorial, the Argo Workflows services are set up using a `kubectl` command. We use `argo`, the command-line tool, to submit and manage the workflows.
+
+
+:::::::::::::::::: checklist
+
+## Ready to go?
+
+Check the instructions in [Software setup](index.html#software-setup)
+
+- [ ] a GCP account and a GCP project
+- [ ] Linux shell available (Linux, macOS or WSL2 on Windows)
+- [ ] gcloud installed
+- [ ] kubectl installed
+- [ ] Terraform installed
+- [ ] go installed
+- [ ] Argo CLI installed
+
+When done, let's go!
+
+::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Too much to install? I just want a quick try...
+
+If you don't have access to a Linux terminal or prefer not to install tools locally, you can use Google Cloud Shell. You'll need a Google Cloud Platform (GCP) account and a GCP project. To open Cloud Shell, click the Cloud Shell icon in the top-right corner of the Google Cloud Console.
+
+Cloud Shell comes pre-installed with gcloud, kubectl, terraform, and go. However, you'll need to install the Argo CLI manually
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
