@@ -380,8 +380,10 @@ run.</p>
 define, provision, and manage cloud infrastructure using configuration
 scripts.</p>
 <p>In this tutorial, we use Terraform scripts to create the Kubernetes
-cluster in a single step. After the workflow finishes, it is easy to
-delete the resources similary, in a single step.</p>
+cluster in a single step. The advantage - compared to plain command-line
+<code>gcloud</code> commands - is that we can easily configure input
+variables. Also, after the workflow finishes, it is easy to delete the
+resources in a single step.</p>
 </section><section><h2 class="section-heading" id="kubernetes">Kubernetes<a class="anchor" aria-label="anchor" href="#kubernetes"></a></h2>
 <hr class="half-width"><p>Kubernetes is a system to managed containerized workflows on
 computing clusters. <code>kubectl</code> is the command-line tool to
@@ -396,6 +398,48 @@ Workflows</a> to define (or “orchestrate”) the workflow steps.</p>
 <p>In this tutorial, the Argo Workflows services are set up using a
 <code>kubectl</code> command. We use <code>argo</code>, the command-line
 tool, to submit and manage the workflows.</p>
+<div id="ready-to-go" class="callout checklist">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check-square"></i>
+</div>
+<div id="ready-to-go" class="callout-inner">
+<h3 class="callout-title">Ready to go?</h3>
+<div class="callout-content">
+<p>Check the instructions in <a href="index.html#software-setup">Software setup</a></p>
+<ul class="task-list"><li><label><input type="checkbox">a GCP account and a GCP
+project</label></li>
+<li><label><input type="checkbox">Linux shell available (Linux, macOS
+or WSL2 on Windows)</label></li>
+<li><label><input type="checkbox">gcloud installed</label></li>
+<li><label><input type="checkbox">kubectl installed</label></li>
+<li><label><input type="checkbox">Terraform installed</label></li>
+<li><label><input type="checkbox">go installed</label></li>
+<li><label><input type="checkbox">Argo CLI installed</label></li>
+</ul><p>When done, let’s go!</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Too much to install? I just want a quick try…
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>If you don’t have access to a Linux terminal or prefer not to install
+tools locally, you can use Google Cloud Shell. You’ll need a Google
+Cloud Platform (GCP) account and a GCP project. To open Cloud Shell,
+click the Cloud Shell icon in the top-right corner of the Google Cloud
+Console.</p>
+<p>Cloud Shell comes pre-installed with gcloud, kubectl, terraform, and
+go. However, you’ll need to install the Argo CLI manually</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
