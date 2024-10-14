@@ -1,21 +1,22 @@
 ---
-title: "About Kubernetes"
+title: "Introduction"
 teaching: 10
 exercises: 5 
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What is Kubernetes?
 - What are public cloud provides?
 - Why would you use them?
+- What is Kubernetes?
+- What else do you need?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the motivation for using Kubernetes cluster from public cloud providers
-- List the information sources
+- Explain the motivation for using Kubernetes cluster from public cloud providers.
+- Explain the tools used to set up the Kubernetes cluster and run the processing workflow.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -69,7 +70,7 @@ In this tutorial, the Argo Workflows services are set up using a `kubectl` comma
 - Public cloud providers are companies that offer pay-as-you-go computing resources and services over the internet to multiple users or organizations.
 - Terraform is an open-source tool to provision and delete computing infrastructure.
 - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications and their associated workflows across clusters of hosts..
-- Argo Workflows is an open-source tool for orchestrating sequentails and parallel jobs on Kubernetes.
+- Argo Workflows is an open-source tool for orchestrating sequential and parallel jobs on Kubernetes.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
