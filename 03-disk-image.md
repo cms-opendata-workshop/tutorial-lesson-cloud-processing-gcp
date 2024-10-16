@@ -17,15 +17,18 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Work in progress
+## Why a disk image?
 
-Building the disk image does not work for a new GCP account for the moment.
+
+The container image for the MiniAOD processing is very big and it needs to be pulled to the nodes of the cluster. It can take 30 mins to pull it.
+Making it available to the nodes of the cluster through a pre-built secondary disk image speeds up the workflow start.
+
+A script is available but building the disk image does not work for a new GCP account for the moment.
 
 Investigating....
 
 
 ## Prerequisites
-
 
 ### GCP account and project
 
