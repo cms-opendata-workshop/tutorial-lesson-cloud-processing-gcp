@@ -37,11 +37,71 @@ The output shows your account and project.
 
 Before you can create resources on GCP, you will need to enable them
 
-If this is your first project or you created it from the Google Cloud Console Web UI, it will have several services enabled.
+In addition to what was enabled in the previous section, we will now enable Kubernetes Engine API (container.googleapis.com):
+
+```bash
+gcloud services enable container.googleapis.com
+```
+
+### Bucket
+
+If you worked through Section 02, you have now a storage bucket for the output files.
+
+List the buckets with
+
+```bash
+gcloud storage ls
+```
+
+### Secondary disk
+
+If you worked through Section 03, you have a secondary boot disk image available
 
 ## Get the code
 
+The example Terraform scripts and Argo Workflow configuration are in 
+
+Get them with
+
+```bash
+git clone git@github.com:cms-dpoa/cloud-processing.git
+cd cloud-processing/standard-gke-cluster-gcs-imgdisk
+```
+
 ## Create the cluster
+
+Set the variable in the `terraform.tfvars` files.
+
+Run 
+
+```bash
+terraform apply
+```
+
+and confirm "yes".
+
+## Connect to the cluster and inspect
+
+```bash
+gcloud container clusters get-credentials cluster-2 --region europe-we
+st4-a --project hip-new-full-account
+```
+
+```bash
+kubectl get nodes
+```
+
+```bash
+kubectl get ns
+```
+
+## Enable image streaming
+
+```bash
+ gcloud container clusters update cluster-2 --zone europe-west4-a --ena
+ble-image-streaming
+
+```
 
 
 ## Costs
@@ -53,9 +113,8 @@ If this is your first project or you created it from the Google Cloud Console We
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Google Cloud Storage bucket can be used to store the output files.
-- The storage cost depends on the volume stored and for this type of processing is very small. 
-- The download of the output files for the bucket has a signicant cost.
+- Kubernetes clusters can be created with Terraform scripts.
+- kubectl is the tool to interact with the cluster.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
