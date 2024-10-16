@@ -92,11 +92,6 @@ gcloud projects add-iam-policy-binding <PROJECT_ID> --member serviceAccount:<PRO
 gcloud projects add-iam-policy-binding <PROJECT_ID> --member serviceAccount:<PROJECT_NR>@cloudbuild.gserviceaccount.com --role roles/compute.admin
 ```
 
-In addition, on the storage side, the compute service account needs write access to the bucket for the logs. Add it with
-
-```bash
-gcloud storage buckets add-iam-policy-binding gs://<BUCKET_FOR_LOGS>/ --project=<PROJECT_ID> --member=serviceAccount:<PROJECT_NR>-compute@developer.gserviceaccount.com --role=roles/storage.objectCreator
-```
 ### Application login
 
 You need to create a credential file to run the script:
@@ -138,7 +133,25 @@ Run the script with
 go run ./cli --project-name=<PROJECT_ID> --image-name=pfnano-disk-image --zone=europe-west4-a --gcs-path=gs://<BUCKET_FOR_LOGS> --disk-size-gb=50 --container-image=ghcr.io/katilp/pfnano-image-build:main --timeout 100m
 ```
 
-For the moment, for a new project created for testing these instructions, this fails. Investigating...
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Error: Quota exceeded?
+
+Failure with errors of type
+
+```
+Code: QUOTA_EXCEEDED
+Message: Quota 'N2_CPUS' exceeded.
+```
+
+are due to requested machine type no being available in the requested zone. Nothing to do with you quota.
+
+Try in a different region or with a different machine type. You can give them as parameters  e.g. `--zone=europe-west4-a --machine-type=e2-standard-4`
+
+Note that the bucket for logs has to be in the same region so you might need to create another one. Remove the old one with `gcloud storage rm -r gs://<BUCKET_FOR_LOGS>`.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Costs
 
