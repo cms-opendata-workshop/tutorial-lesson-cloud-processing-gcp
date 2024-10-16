@@ -92,6 +92,10 @@ If this is your first project or you created it from the Google Cloud Console We
 
 If you created the project from the command line without specifying the billing account, you must link it to an existing billing account.
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### How to link a project to your billing account?
+
 First list the billing accounts
 
 ```bash
@@ -109,6 +113,8 @@ If not, link your project to this account with
 ```bash
 gcloud billing projects link <PROJECT_ID> --billing-account <ACCOUNT_ID>
 ```
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Choose your region
 
@@ -170,7 +176,7 @@ In the context of the example of this tutorial, the resulting output files are a
 
 - Google Cloud Storage bucket can be used to store the output files.
 - The storage cost depends on the volume stored and for this type of processing is very small. 
-- The download of the output files for the bucket has a significant cost.
+- The download of big output files from the bucket can be costly.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
