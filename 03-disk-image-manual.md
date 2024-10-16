@@ -137,17 +137,16 @@ Writing superblocks and filesystem accounting information: done
 ## Mount the disk
 
 ```
-kati@vm-work ~ $ sudo mkdir -p /mnt/disks/img
-kati@vm-work ~ $ sudo mount -o discard,defaults /dev/sdb /mnt/disks/img
-kati@vm-work ~ $ sudo chmod a+w /mnt/disks/img
+$ sudo mkdir -p /mnt/disks/img
+$ sudo mount -o discard,defaults /dev/sdb /mnt/disks/img
+$ sudo chmod a+w /mnt/disks/img
 ```
 
 ## Configure docker and pull the image
 
-Modify the docker config file to store data in the mounted disk
+Add a line `"data-root": "/mnt/disks/img"` to  the docker config file `/etc/docker/daemon.json` so that docker stores data in the mounted disk. The file becomes:
 
 ```
-$ cat /etc/docker/daemon.json
 {
         "live-restore": true,
         "log-opts": {
@@ -159,7 +158,7 @@ $ cat /etc/docker/daemon.json
 }
 ```
 
-Remember the comma before the line that you add!
+Remember the comma before the line that you added! I made the mistake, you do not have to...
 
 Restart the docker service
 
@@ -167,18 +166,18 @@ Restart the docker service
 sudo systemctl restart docker
 ```
 
-Pull the images that you need
+Pull the images that you need. In the example workflow we use three of them (in addition to a tiny python image), so we pull:
 
 ```
 docker pull ghcr.io/katilp/pfnano-image-build:main
-
 docker pull cernopendata/cernopendata-client
-
 docker pull rootproject/root:latest
 ```
 
+After the pull is ready, you can see them with:
+
 ```
-kati@vm-work ~ $ docker image ls
+$ docker image ls
 REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
 rootproject/root                    latest    34eb35079484   4 weeks ago     2.76GB
 cernopendata/cernopendata-client    latest    f690d7308889   7 weeks ago     282MB
@@ -186,7 +185,7 @@ ghcr.io/katilp/pfnano-image-build   main      d95521bc96a9   11 months ago   32.
 ```
 
 
-Exit from the VM and stop it
+Exit from the VM with `exit` and stop it
 
 ```
 gcloud compute instances stop vm-work
