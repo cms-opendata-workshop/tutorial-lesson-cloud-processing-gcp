@@ -614,7 +614,7 @@ to use for this work. In your Linux terminal, type</p>
   How to change them?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>If they are not what you expect (in case you have many), change them
 with</p>
@@ -665,6 +665,16 @@ Console Web UI, it will have a billing account linked to it.</p>
 <p>If you created the project from the command line without specifying
 the billing account, you must link it to an existing billing
 account.</p>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  How to link a project to your billing account?
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
 <p>First list the billing accounts</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -683,6 +693,10 @@ linked to it</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section level3">
@@ -771,8 +785,7 @@ MiniAOD dataset will cost $40.</p>
 files.</li>
 <li>The storage cost depends on the volume stored and for this type of
 processing is very small.</li>
-<li>The download of the output files for the bucket has a significant
-cost.</li>
+<li>The download of big output files from the bucket can be costly.</li>
 </ul>
 </div>
 </div>
@@ -816,11 +829,15 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="work-in-progress">Work in progress<a class="anchor" aria-label="anchor" href="#work-in-progress"></a>
+<section><h2 class="section-heading" id="why-a-disk-image">Why a disk image?<a class="anchor" aria-label="anchor" href="#why-a-disk-image"></a>
 </h2>
 <hr class="half-width">
-<p>Building the disk image does not work for a new GCP account for the
-moment.</p>
+<p>The container image for the MiniAOD processing is very big and it
+needs to be pulled to the nodes of the cluster. It can take 30 mins to
+pull it. Making it available to the nodes of the cluster through a
+pre-built secondary disk image speeds up the workflow start.</p>
+<p>A script is available but building the disk image does not work for a
+new GCP account for the moment.</p>
 <p>Investigating….</p>
 </section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
 </h2>

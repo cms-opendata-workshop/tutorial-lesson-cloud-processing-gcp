@@ -234,7 +234,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#work-in-progress">Work in progress</a></li>
+        <ul><li><a href="#why-a-disk-image">Why a disk image?</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#get-the-code">Get the code</a></li>
 <li><a href="#create-the-image">Create the image</a></li>
@@ -346,9 +346,13 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="work-in-progress">Work in progress<a class="anchor" aria-label="anchor" href="#work-in-progress"></a></h2>
-<hr class="half-width"><p>Building the disk image does not work for a new GCP account for the
-moment.</p>
+<section><h2 class="section-heading" id="why-a-disk-image">Why a disk image?<a class="anchor" aria-label="anchor" href="#why-a-disk-image"></a></h2>
+<hr class="half-width"><p>The container image for the MiniAOD processing is very big and it
+needs to be pulled to the nodes of the cluster. It can take 30 mins to
+pull it. Making it available to the nodes of the cluster through a
+pre-built secondary disk image speeds up the workflow start.</p>
+<p>A script is available but building the disk image does not work for a
+new GCP account for the moment.</p>
 <p>Investigating….</p>
 </section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
 <hr class="half-width"><div class="section level3">
