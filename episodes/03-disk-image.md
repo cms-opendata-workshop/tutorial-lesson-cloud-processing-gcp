@@ -97,7 +97,15 @@ In addition, on the storage side, the compute service account needs write access
 ```bash
 gcloud storage buckets add-iam-policy-binding gs://<BUCKET_FOR_LOGS>/ --project=<PROJECT_ID> --member=serviceAccount:<PROJECT_NR>-compute@developer.gserviceaccount.com --role=roles/storage.objectCreator
 ```
+### Application login
 
+You need to create a credential file to run the script:
+
+```bash
+gcloud auth application-default login
+```
+
+and authenticate in the browser window that opens.
 
 ## Get the code
 
