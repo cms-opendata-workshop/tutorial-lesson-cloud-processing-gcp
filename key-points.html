@@ -267,7 +267,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-disk-image-manual.html">3. Disk image</a>
+        <a href="03-disk-image.html">3. Disk image</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -280,6 +280,18 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
         <a href="04-cluster.html">4. Kubernetes cluster</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-workflow.html">5. Set up workflow</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -363,7 +375,7 @@ files.</li>
 <li>The storage cost depends on the volume stored and for this type of
 processing is very small.</li>
 <li>The download of big output files from the bucket can be costly.</li>
-</ul></section><section id="03-disk-image-manual"><h2 class="section-heading"><a href="03-disk-image-manual.html">Disk image</a></h2>
+</ul></section><section id="03-disk-image"><h2 class="section-heading"><a href="03-disk-image.html">Disk image</a></h2>
 <hr class="half-width">
 <ul>
 <li>A secondary boot disk with the container image preloaded can speed
@@ -371,12 +383,17 @@ up the workflow start.</li>
 </ul></section><section id="04-cluster"><h2 class="section-heading"><a href="04-cluster.html">Kubernetes cluster</a></h2>
 <hr class="half-width">
 <ul>
-<li>Google Cloud Storage bucket can be used to store the output
-files.</li>
-<li>The storage cost depends on the volume stored and for this type of
-processing is very small.</li>
-<li>The download of the output files for the bucket has a signicant
-cost.</li>
+<li>Kubernetes clusters can be created with Terraform scripts.</li>
+<li>kubectl is the tool to interact with the cluster.</li>
+</ul></section><section id="05-workflow"><h2 class="section-heading"><a href="05-workflow.html">Set up workflow</a></h2>
+<hr class="half-width">
+<ul>
+<li>Once the cluster is up, you will first deploy the Argo Workflows
+services using <code>kubectl</code>.</li>
+<li>You will submit and monitor the workflow with
+<code>argo</code>.</li>
+<li>You can see the output in the bucket with <code>gcloud</code>
+commands or on Google Cloud Console Web UI.</li>
 </ul></section>
 </div>
     </main>

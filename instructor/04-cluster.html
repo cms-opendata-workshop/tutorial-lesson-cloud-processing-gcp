@@ -118,11 +118,11 @@
   CMS Open Data processing in Google Cloud Platform (GCP)
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 75%" class="percentage">
-    75%
+<aside class="col-md-12 lesson-progress"><div style="width: 60%" class="percentage">
+    60%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 75%" aria-valuenow="75" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 60%" aria-valuenow="60" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -224,7 +224,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-disk-image-manual.html">3. Disk image</a>
+        <a href="03-disk-image.html">3. Disk image</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -246,9 +246,20 @@
         <ul><li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#get-the-code">Get the code</a></li>
 <li><a href="#create-the-cluster">Create the cluster</a></li>
+<li><a href="#connect-to-the-cluster-and-inspect">Connect to the cluster and inspect</a></li>
+<li><a href="#enable-image-streaming">Enable image streaming</a></li>
 <li><a href="#costs">Costs</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-workflow.html">5. Set up workflow</a>
+    </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -295,17 +306,17 @@
         <!-- START: inst/pkgdown/templates/content-instructor.html dummypushtext -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="../instructor/03-disk-image-manual.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="../instructor/03-disk-image.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link float-end" href="../instructor/05-workflow.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/03-disk-image-manual.html" rel="prev">
+        <a class="chapter-link" href="../instructor/03-disk-image.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Disk image
         </a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">
-          Home
+        <a class="chapter-link float-end" href="../instructor/05-workflow.html" rel="next">
+          Next: Set up workflow...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -364,12 +375,74 @@ to use for this work. In your Linux terminal, type</p>
 <h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a></h3>
 <p>Before you can create resources on GCP, you will need to enable
 them</p>
-<p>If this is your first project or you created it from the Google Cloud
-Console Web UI, it will have several services enabled.</p>
+<p>In addition to what was enabled in the previous section, we will now
+enable Kubernetes Engine API (container.googleapis.com):</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable container.googleapis.com</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="bucket">Bucket<a class="anchor" aria-label="anchor" href="#bucket"></a></h3>
+<p>If you worked through Section 02, you have now a storage bucket for
+the output files.</p>
+<p>List the buckets with</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="secondary-disk">Secondary disk<a class="anchor" aria-label="anchor" href="#secondary-disk"></a></h3>
+<p>If you worked through Section 03, you have a secondary boot disk
+image available</p>
 </div>
 </section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
+<hr class="half-width"><p>The example Terraform scripts and Argo Workflow configuration are
+in</p>
+<p>Get them with</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a></h2>
+<hr class="half-width"><p>Set the variable in the <code>terraform.tfvars</code> files.</p>
+<p>Run</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+</div>
+<p>and confirm “yes”.</p>
+</section><section><h2 class="section-heading" id="connect-to-the-cluster-and-inspect">Connect to the cluster and inspect<a class="anchor" aria-label="anchor" href="#connect-to-the-cluster-and-inspect"></a></h2>
+<hr class="half-width"><div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials cluster-2 <span class="at">--region</span> europe-we</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">st4-a</span> <span class="at">--project</span> hip-new-full-account</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="enable-image-streaming">Enable image streaming<a class="anchor" aria-label="anchor" href="#enable-image-streaming"></a></h2>
+<hr class="half-width"><div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="ex">gcloud</span> container clusters update cluster-2 <span class="at">--zone</span> europe-west4-a <span class="at">--ena</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ble-image-streaming</span></span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
 <hr class="half-width"><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -377,12 +450,8 @@ Console Web UI, it will have several services enabled.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>Google Cloud Storage bucket can be used to store the output
-files.</li>
-<li>The storage cost depends on the volume stored and for this type of
-processing is very small.</li>
-<li>The download of the output files for the bucket has a signicant
-cost.</li>
+<ul><li>Kubernetes clusters can be created with Terraform scripts.</li>
+<li>kubectl is the tool to interact with the cluster.</li>
 </ul></div>
 </div>
 </div>
@@ -392,17 +461,17 @@ any links that you are not going to use.
  -->
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="../instructor/03-disk-image-manual.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="../instructor/03-disk-image.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link float-end" href="../instructor/05-workflow.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/03-disk-image-manual.html" rel="prev">
+        <a class="chapter-link" href="../instructor/03-disk-image.html" rel="prev">
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Disk image
         </a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">
-          Home
+        <a class="chapter-link float-end" href="../instructor/05-workflow.html" rel="next">
+          Next: Set up workflow...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>

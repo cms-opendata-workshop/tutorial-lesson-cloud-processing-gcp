@@ -118,11 +118,11 @@
   CMS Open Data processing in Google Cloud Platform (GCP)
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 50%" class="percentage">
-    50%
+<aside class="col-md-12 lesson-progress"><div style="width: 40%" class="percentage">
+    40%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 50%" aria-valuenow="50" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 40%" aria-valuenow="40" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -249,6 +249,15 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
         <a href="04-cluster.html">4. Kubernetes cluster</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="05-workflow.html">5. Set up workflow</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -419,13 +428,16 @@ resources (the image disk belongs to that category)</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
 </div>
-<p>In addition, on the storage side, the compute service account needs
-write access to the bucket for the logs. Add it with</p>
+</div>
+<div class="section level3">
+<h3 id="application-login">Application login<a class="anchor" aria-label="anchor" href="#application-login"></a></h3>
+<p>You need to create a credential file to run the script:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> storage buckets add-iam-policy-binding gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span>/ <span class="at">--project</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member=serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>-compute@developer.gserviceaccount.com <span class="at">--role</span><span class="op">=</span>roles/storage.objectCreator</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre>
 </div>
+<p>and authenticate in the browser window that opens.</p>
 </div>
 </section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a></h2>
 <hr class="half-width"><p>Pull the code from <a href="https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder" class="external-link uri">https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder</a></p>
@@ -448,8 +460,35 @@ installed.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>ghcr.io/katilp/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
 </div>
-<p>For the moment, for a new project created for testing these
-instructions, this fails. Investigating…</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Error: Quota exceeded?
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<p>Failure with errors of type</p>
+<pre><code>Code: QUOTA_EXCEEDED
+Message: Quota 'N2_CPUS' exceeded.</code></pre>
+<p>are due to requested machine type no being available in the requested
+zone. Nothing to do with you quota.</p>
+<p>Try in a different region or with a different machine type. You can
+give them as parameters
+e.g. <code>--zone=europe-west4-a --machine-type=e2-standard-4</code>.
+Independent of the zone specified in parameters, the disk image will
+have <code>eu</code> as the location, so any zone in <code>europe</code>
+is OK (if you plan to create your cluster in a zone in
+<code>europe</code>).</p>
+<p>Note that the bucket for logs has to be in the same region so you
+might need to create another one. Remove the old one with
+<code>gcloud storage rm -r gs://&lt;BUCKET_FOR_LOGS&gt;</code>.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
 <hr class="half-width"><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
