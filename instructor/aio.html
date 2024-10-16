@@ -265,6 +265,30 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03-disk-image.html">3. Disk image</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="04-cluster.html">4. Kubernetes cluster</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -475,7 +499,7 @@ or WSL2 on Windows)</label></li>
   Too much to install? I just want a quick try…
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If you don’t have access to a Linux terminal or prefer not to install
 tools locally, you can use Google Cloud Shell. You’ll need a Google
@@ -516,7 +540,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02-storage"><p>Content from <a href="02-storage.html">Persistent storage</a></p>
 <hr>
-<p>Last updated on 2024-10-14 |
+<p>Last updated on 2024-10-16 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/02-storage.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -532,7 +556,8 @@ any links that you are not going to use.
 <h3 class="card-title">Questions</h3>
 <ul>
 <li>How to create a Google Cloud Storage bucket?</li>
-<li>Why it done separately from the cluster?</li>
+<li>What are the basic operations?</li>
+<li>What are the cost of storage and download?</li>
 </ul>
 </div>
 </div>
@@ -543,6 +568,7 @@ any links that you are not going to use.
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Learn to create a Google Cloud Storage bucket</li>
+<li>Learn to list the contents of a bukcet</li>
 <li>Understand the persistant storage costs.</li>
 </ul>
 </div>
@@ -555,7 +581,8 @@ any links that you are not going to use.
 <hr class="half-width">
 <p>The processing workflow writes the output files to a storage from
 which they can be downloaded afterwards.</p>
-<p>For this tutorial, we use a Google Cloud Storage (GCS) bucket.</p>
+<p>For this tutorial, we use a <a href="https://cloud.google.com/storage/docs/buckets" class="external-link">Google Cloud
+Storage (GCS) bucket</a>.</p>
 <div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -591,7 +618,7 @@ to use for this work. In your Linux terminal, type</p>
   How to change them?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If they are not what you expect (in case you have many), change them
 with</p>
@@ -640,7 +667,8 @@ with</p>
 <p>If this is your first project or you created it from the Google Cloud
 Console Web UI, it will have a billing account linked to it.</p>
 <p>If you created the project from the command line without specifying
-the billing account, you can link it to an existing account.</p>
+the billing account, you must link it to an existing billing
+account.</p>
 <p>First list the billing accounts</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -654,21 +682,87 @@ linked to it</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects list <span class="at">--billing-account</span> <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
-<p>If not, link your project to this account with gcloud billing
-projects link <project_id> –billing-account <account_id></account_id></project_id></p>
+<p>If not, link your project to this account with</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
-<h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a>
+<h3 id="choose-your-region">Choose your region<a class="anchor" aria-label="anchor" href="#choose-your-region"></a>
 </h3>
+<p>In this tutorial, we will use the Google computing centre
+<code>europe-west4</code> located in Netherlands. You can use another
+one, but use it consistently.</p>
+<p>If you computing resources are in a different region than your
+storage, additional cost and delay may occur.</p>
+</div>
+</section><section><h2 class="section-heading" id="create-the-bucket">Create the bucket<a class="anchor" aria-label="anchor" href="#create-the-bucket"></a>
+</h2>
+<hr class="half-width">
+<p>Create a storage bucket with</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">gcloud</span> storage buckets create gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span> --location europe-west4</span></code></pre>
+</div>
+<p>You can test copying a file to it with</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> test <span class="op">&gt;</span> test.txt</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">gcloud</span> storage cp test.txt gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/</span></code></pre>
+</div>
+<p>and list the contents of the bucket with</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">*</span></span></code></pre>
+</div>
+<p>You can remove the file with</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">gcloud</span> storage rm gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/test.txt</span></code></pre>
+</div>
+<p>Note that the bucket is tied to your GCP project and you can only
+access it when authenticated.</p>
+</section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="storage">Storage<a class="anchor" aria-label="anchor" href="#storage"></a>
+</h3>
+<p>The <a href="https://cloud.google.com/storage/pricing" class="external-link">storage
+cost</a> of a GCS bucket depends on the data volume. The costs may vary
+from a region to another. For <code>europe-west4</code>, the current
+(October 2024) monthly cost is $0.020 / GB.</p>
 </div>
 <div class="section level3">
-<h3 id="decide-your-region">Decide your region<a class="anchor" aria-label="anchor" href="#decide-your-region"></a>
+<h3 id="operations">Operations<a class="anchor" aria-label="anchor" href="#operations"></a>
 </h3>
+<p>An <a href="https://cloud.google.com/storage/pricing#operations-pricing" class="external-link">operation</a>
+is an action that makes changes to or retrieves information from a
+bucket and it has a tiny cost: $0.005 per 1000 operations. This applies,
+for example, to listing the contents of the bucket on your terminal. The
+traffic between GCP computing resources and storage within the same
+region (e.g. in <code>europe-west4</code>) is free.</p>
+<p>In the context of this tutorial, the operations costs are
+insignificant. However, keep this is mind if you plan to write scripts
+that list the bucket content from your terminal.</p>
+</div>
+<div class="section level3">
+<h3 id="networking-and-download">Networking and download<a class="anchor" aria-label="anchor" href="#networking-and-download"></a>
+</h3>
+<p><a href="https://cloud.google.com/storage/pricing#network-egress" class="external-link">Downloading
+data</a> from the GCS bucket to your computer has a significant cost:
+the current (October 2024) cost to internet locations (excluding China
+and Austalia) is $0.12 / GB.</p>
+<p>In the context of the example of this tutorial, the resulting output
+files are approximately 30% of the original MiniAOD dataset volume. For
+example, downloading the 330 GB ouput from a processing of a 1.1 TB
+MiniAOD dataset will cost $40.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -679,8 +773,10 @@ projects link <project_id> –billing-account <account_id></account_id></project
 <ul>
 <li>Google Cloud Storage bucket can be used to store the output
 files.</li>
-<li>The storage cost depends on the volume stored.</li>
-<li>The download</li>
+<li>The storage cost depends on the volume stored and for this type of
+processing is very small.</li>
+<li>The download of the output files for the bucket has a significant
+cost.</li>
 </ul>
 </div>
 </div>
@@ -690,6 +786,261 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
+</section></section><section id="aio-03-disk-image"><p>Content from <a href="03-disk-image.html">Disk image</a></p>
+<hr>
+<p>Last updated on 2024-10-16 |
+
+        <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/03-disk-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Why to build a disk image for cluster nodes?</li>
+<li>How to build a disk image?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Create a disk image with the container images.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="work-in-progress">Work in progress<a class="anchor" aria-label="anchor" href="#work-in-progress"></a>
+</h2>
+<hr class="half-width">
+<p>Building the disk image does not work for a new GCP account for the
+moment.</p>
+<p>Investigating….</p>
+</section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="gcp-account-and-project">GCP account and project<a class="anchor" aria-label="anchor" href="#gcp-account-and-project"></a>
+</h3>
+<p>Make sure that you are in the GCP account and project that you intend
+to use for this work. In your Linux terminal, type</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+</div>
+<p>The output shows your account and project.</p>
+</div>
+<div class="section level3">
+<h3 id="bucket-for-logs">Bucket for logs<a class="anchor" aria-label="anchor" href="#bucket-for-logs"></a>
+</h3>
+<p>To build an image disk, we will use a script that produces some logs.
+We create a bucket for these logs with</p>
+<pre><code>gcloud storage buckets create gs://&lt;BUCKET_FOR_LOGS&gt;/ --location europe-west4</code></pre>
+</div>
+<div class="section level3">
+<h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a>
+</h3>
+<p>Before you can create resources on GCP, you will need to enable the
+corresponding services.</p>
+<p>Your project usually has several services enabled already. You can
+list them with</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--enabled</span></span></code></pre>
+</div>
+<p>You can list all available services with</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--available</span></span></code></pre>
+</div>
+<p>but that’s a long list!</p>
+<p>To build a disk image, you will need to <a href="https://cloud.google.com/endpoints/docs/openapi/enable-api#enabling_an_api" class="external-link">enable</a>
+Cloud Build API (cloudbuild.googleapis.com) and Compute Engine API
+(compute.googleapis.com) with</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable cloudbuild.googleapis.com compute.googleapis.com</span></code></pre>
+</div>
+<p>When services are enabled, some “service accounts” with specific
+roles get created. You can list them with</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> projects get-iam-policy <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>Often, the resources need to work with each other. In this case, the
+Cloud Build service needs to have two additional roles to access Compute
+resources (the image disk belongs to that category)</p>
+<p>Add them with</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.serviceAgent</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
+</div>
+<p>In addition, on the storage side, the compute service account needs
+write access to the bucket for the logs. Add it with</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> storage buckets add-iam-policy-binding gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span>/ <span class="at">--project</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member=serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>-compute@developer.gserviceaccount.com <span class="at">--role</span><span class="op">=</span>roles/storage.objectCreator</span></code></pre>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a>
+</h2>
+<hr class="half-width">
+<p>Pull the code from <a href="https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder" class="external-link uri">https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder</a></p>
+<p>If you want only this directory and not the full repository, use the
+sparse checkout:</p>
+<pre><code>git init &lt;your_new_folder&gt;
+cd &lt;your_new_folder&gt;
+git remote add -f origin git@github.com:GoogleCloudPlatform/ai-on-gke.git</code></pre>
+<p>This takes a while.</p>
+<pre><code>git config core.sparseCheckout true
+echo "tools/gke-disk-image-builder/" &gt;&gt;  .git/info/sparse-checkout
+git pull origin main
+cd tools/gke-disk-image-builder/</code></pre>
+</section><section><h2 class="section-heading" id="create-the-image">Create the image<a class="anchor" aria-label="anchor" href="#create-the-image"></a>
+</h2>
+<hr class="half-width">
+<p>To create the image with the script, you must have <code>go</code>
+installed.</p>
+<p>Run the script with</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>ghcr.io/katilp/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
+</div>
+<p>For the moment, for a new project created for testing these
+instructions, this fails. Investigating…</p>
+</section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a>
+</h2>
+<hr class="half-width">
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>A secondary boot disk with the container image preloaded can speed
+up the workflow start.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-04-cluster"><p>Content from <a href="04-cluster.html">Kubernetes cluster</a></p>
+<hr>
+<p>Last updated on 2024-10-16 |
+
+        <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/04-cluster.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How to create a Google Kubernetes Engine cluster?</li>
+<li>How to access the cluster from the command line?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Learn to create a Google Kubernetes Engine cluster.</li>
+<li>Access the cluster and inspect it from the command line.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="gcp-account-and-project">GCP account and project<a class="anchor" aria-label="anchor" href="#gcp-account-and-project"></a>
+</h3>
+<p>Make sure that you are in the GCP account and project that you intend
+to use for this work. In your Linux terminal, type</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+</div>
+<p>The output shows your account and project.</p>
+</div>
+<div class="section level3">
+<h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a>
+</h3>
+<p>Before you can create resources on GCP, you will need to enable
+them</p>
+<p>If this is your first project or you created it from the Google Cloud
+Console Web UI, it will have several services enabled.</p>
+</div>
+</section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a>
+</h2>
+<hr class="half-width">
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Google Cloud Storage bucket can be used to store the output
+files.</li>
+<li>The storage cost depends on the volume stored and for this type of
+processing is very small.</li>
+<li>The download of the output files for the bucket has a signicant
+cost.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
 </section></section>
 </div>
     </main>
@@ -715,7 +1066,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.8" class="external-link">sandpaper (0.16.8)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.9" class="external-link">sandpaper (0.16.9)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -738,8 +1089,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/aio.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/aio.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-15",
-  "datePublished": "2024-10-15"
+  "dateModified": "2024-10-16",
+  "datePublished": "2024-10-16"
 }
 
   </script><script>

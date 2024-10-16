@@ -7,6 +7,12 @@
     <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/02-storage.html</loc>
   </url>
   <url>
+    <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/03-disk-image.html</loc>
+  </url>
+  <url>
+    <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/04-cluster.html</loc>
+  </url>
+  <url>
     <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/404.html</loc>
   </url>
   <url>
@@ -29,6 +35,12 @@
   </url>
   <url>
     <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/02-storage.html</loc>
+  </url>
+  <url>
+    <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/03-disk-image.html</loc>
+  </url>
+  <url>
+    <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/04-cluster.html</loc>
   </url>
   <url>
     <loc>https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/404.html</loc>
