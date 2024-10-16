@@ -65,8 +65,9 @@ contact: 'cms-dpoa-coordinator@cern.ch' # FIXME
 episodes: 
 - 01-intro.md
 - 02-storage.md
-- 03-disk-image-manual.md
+- 03-disk-image.md
 - 04-cluster.md
+- 05-workflow.md
 
 # Information for Learners
 learners: 

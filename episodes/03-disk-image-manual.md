@@ -209,7 +209,14 @@ gcloud compute instances delete vm-work --zone=europe-west4-c
 gcloud compute disks delete pfnano-disk --zone=europe-west4-c
 ```
 
+## Nota bene
 
+The workflow does not find the container images in this secondary disk on the node.
+A visible difference between the images that the "family" parameter is `secondary-disk-image` for the one built by the disk.
+
+TBC if setting it so helps.
+
+But it might be more involved...
 
 ## Costs
 

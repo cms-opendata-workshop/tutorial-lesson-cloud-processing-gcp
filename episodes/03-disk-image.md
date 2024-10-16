@@ -146,7 +146,9 @@ Message: Quota 'N2_CPUS' exceeded.
 
 are due to requested machine type no being available in the requested zone. Nothing to do with you quota.
 
-Try in a different region or with a different machine type. You can give them as parameters  e.g. `--zone=europe-west4-a --machine-type=e2-standard-4`
+Try in a different region or with a different machine type. You can give them as parameters  e.g. `--zone=europe-west4-a --machine-type=e2-standard-4`.
+Independent of the zone specified in parameters, the disk image will have `eu` as the location, so any zone in `europe` is OK (if you plan to create your cluster in a zone in `europe`).
+
 
 Note that the bucket for logs has to be in the same region so you might need to create another one. Remove the old one with `gcloud storage rm -r gs://<BUCKET_FOR_LOGS>`.
 
