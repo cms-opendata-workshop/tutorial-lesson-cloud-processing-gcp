@@ -452,13 +452,14 @@ Writing inode tables: done
 Creating journal (131072 blocks): done
 Writing superblocks and filesystem accounting information: done</code></pre>
 </section><section><h2 class="section-heading" id="mount-the-disk">Mount the disk<a class="anchor" aria-label="anchor" href="#mount-the-disk"></a></h2>
-<hr class="half-width"><pre><code>kati@vm-work ~ $ sudo mkdir -p /mnt/disks/img
-kati@vm-work ~ $ sudo mount -o discard,defaults /dev/sdb /mnt/disks/img
-kati@vm-work ~ $ sudo chmod a+w /mnt/disks/img</code></pre>
+<hr class="half-width"><pre><code>$ sudo mkdir -p /mnt/disks/img
+$ sudo mount -o discard,defaults /dev/sdb /mnt/disks/img
+$ sudo chmod a+w /mnt/disks/img</code></pre>
 </section><section><h2 class="section-heading" id="configure-docker-and-pull-the-image">Configure docker and pull the image<a class="anchor" aria-label="anchor" href="#configure-docker-and-pull-the-image"></a></h2>
-<hr class="half-width"><p>Modify the docker config file to store data in the mounted disk</p>
-<pre><code>$ cat /etc/docker/daemon.json
-{
+<hr class="half-width"><p>Add a line <code>"data-root": "/mnt/disks/img"</code> to the docker
+config file <code>/etc/docker/daemon.json</code> so that docker stores
+data in the mounted disk. The file becomes:</p>
+<pre><code>{
         "live-restore": true,
         "log-opts": {
                 "tag": "{{.Name}}"
@@ -467,21 +468,22 @@ kati@vm-work ~ $ sudo chmod a+w /mnt/disks/img</code></pre>
         "mtu": 1460,
         "data-root": "/mnt/disks/img"
 }</code></pre>
-<p>Remember the comma before the line that you add!</p>
+<p>Remember the comma before the line that you added! I made the
+mistake, you do not have to…</p>
 <p>Restart the docker service</p>
 <pre><code>sudo systemctl restart docker</code></pre>
-<p>Pull the images that you need</p>
+<p>Pull the images that you need. In the example workflow we use three
+of them (in addition to a tiny python image), so we pull:</p>
 <pre><code>docker pull ghcr.io/katilp/pfnano-image-build:main
-
 docker pull cernopendata/cernopendata-client
-
 docker pull rootproject/root:latest</code></pre>
-<pre><code>kati@vm-work ~ $ docker image ls
+<p>After the pull is ready, you can see them with:</p>
+<pre><code>$ docker image ls
 REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
 rootproject/root                    latest    34eb35079484   4 weeks ago     2.76GB
 cernopendata/cernopendata-client    latest    f690d7308889   7 weeks ago     282MB
 ghcr.io/katilp/pfnano-image-build   main      d95521bc96a9   11 months ago   32.1GB</code></pre>
-<p>Exit from the VM and stop it</p>
+<p>Exit from the VM with <code>exit</code> and stop it</p>
 <pre><code>gcloud compute instances stop vm-work</code></pre>
 </section><section><h2 class="section-heading" id="create-the-image">Create the image<a class="anchor" aria-label="anchor" href="#create-the-image"></a></h2>
 <hr class="half-width"><pre><code>gcloud compute images create pfnano-image-disk --project=hip-new-full-account --source-disk=pfnano-disk --source-disk-zone=europe-west4-c --storage-location=europe-west4</code></pre>
