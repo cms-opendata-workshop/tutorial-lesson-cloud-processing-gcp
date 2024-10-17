@@ -49,6 +49,7 @@ We create a bucket for these logs with
 gcloud storage buckets create gs://<BUCKET_FOR_LOGS>/ --location europe-west4
 ```
 
+### Go installed
 
 ### Enabling services
 
@@ -80,7 +81,7 @@ When services are enabled, some "service accounts" with specific roles get creat
 gcloud projects get-iam-policy <PROJECT_ID>
 ```
 
-Often, the resources need to work with each other. In this case, the Cloud Build service needs to have two additional roles to access Compute resources (the image disk belongs to that category)
+Often, the resources need to work with each other. In this case, the Cloud Build service needs to have two additional roles to access Compute resources (the image disk belongs to that category).
 
 Add them with
 
@@ -130,8 +131,14 @@ To create the image with the script, you must have `go` installed.
 Run the script with
 
 ```bash
-go run ./cli --project-name=<PROJECT_ID> --image-name=pfnano-disk-image --zone=europe-west4-a --gcs-path=gs://<BUCKET_FOR_LOGS> --disk-size-gb=50 --container-image=ghcr.io/katilp/pfnano-image-build:main --timeout 100m
+go run ./cli --project-name=<PROJECT_ID> --image-name=pfnano-disk-image --zone=europe-west4-a --gcs-path=gs://<BUCKET_FOR_LOGS> --disk-size-gb=50 --container-image=docker.io/cernopendata/cernopendata-client:latest --container-image=docker.io/rootproject/root:latest  --container-image=ghcr.io/cms-dpoa/pfnano-image-build:main --timeout 100m
 ```
+
+:::::::::::::::::::::::::::::::::::::::::: callout
+
+Note that while images can in most cases be "pulled" from Dockerhub  specifying only the image name (e.g. `cernopendata/cernopendata-client` and `rootproject/root`), in this script you must give the full registry address starting with `docker.io` **and** specify a tag (i.e. `:latest`).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
 

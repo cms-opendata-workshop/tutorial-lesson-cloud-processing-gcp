@@ -93,6 +93,14 @@ replicaset.apps/argo-server-5f7b589d6f           1         1         1       24s
 replicaset.apps/workflow-controller-864c88655d   1         1         1       24s
 ```
 
+## About Argo Workflows
+
+The data processing example is defined as an Argo workflow. You can learn about Argo Workflows in their [documentation](https://argo-workflows.readthedocs.io/en/latest/).
+
+Every step in the workflow runs in a container, and there several ways to pass the information between the steps.
+
+The example configuration in `argo/argo_bucket_run.yaml` has comments to help you to understand how the files and/or parameters can be passed from a step to another.
+
 ## Submit a test job
 
 Edit the parameters in the `argo/argo_bucket_run.yaml` so that they are
@@ -100,19 +108,15 @@ Edit the parameters in the `argo/argo_bucket_run.yaml` so that they are
 ```
     parameters:
     - name: nEvents
-      #FIXME
       # Number of events in the dataset to be processed (-1 is all)
       value: 1000
     - name: recid
-      #FIXME
       # Record id of the dataset to be processed
       value: 30511
     - name: nJobs
-      #FIXME
       # Number of jobs the processing workflow should be split into
       value: 2
     - name: bucket
-      #FIXME
       # Name of cloud storage bucket for storing outputs
       value: <YOUR_BUCKET_NAME>
 ```
@@ -141,6 +145,22 @@ gs://<YOUR_BUCKET_NAME>/pfnano/30511/plots/h_pdgid_cands.png
 gs://<YOUR_BUCKET_NAME>/pfnano/30511/scatter/pfnanooutput1.root
 gs://<YOUR_BUCKET_NAME>/pfnano/30511/scatter/pfnanooutput2.root
 ```
+
+### Delete resources
+
+Delete the workflow after each run so that the "pods" do not accumulate. They are not running anymore but still visible.
+
+```bash
+argo delete -n argo @latest
+```
+
+Do not keep the cluster, if you are not running jobs. The cost goes by the time it exists, not by the time it is in use. You can delete all resources created by the Terraform script with
+
+```bash
+terraform destroy
+```
+
+Confirm with "yes".
 
 ## Costs
 
