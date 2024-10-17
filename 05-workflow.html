@@ -255,6 +255,7 @@
         <ul><li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#get-the-code">Get the code</a></li>
 <li><a href="#deploy-argo-workflows-service">Deploy Argo Workflows service</a></li>
+<li><a href="#about-argo-workflows">About Argo Workflows</a></li>
 <li><a href="#submit-a-test-job">Submit a test job</a></li>
 <li><a href="#costs">Costs</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -321,7 +322,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Set up workflow</h1>
-        <p>Last updated on 2024-10-16 |
+        <p>Last updated on 2024-10-17 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/05-workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -426,24 +427,28 @@ in</p>
 <span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="ex">replicaset.apps/argo-server-5f7b589d6f</span>           1         1         1       24s</span>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="ex">replicaset.apps/workflow-controller-864c88655d</span>   1         1         1       24s</span></code></pre>
 </div>
+</section><section><h2 class="section-heading" id="about-argo-workflows">About Argo Workflows<a class="anchor" aria-label="anchor" href="#about-argo-workflows"></a></h2>
+<hr class="half-width"><p>The data processing example is defined as an Argo workflow. You can
+learn about Argo Workflows in their <a href="https://argo-workflows.readthedocs.io/en/latest/" class="external-link">documentation</a>.</p>
+<p>Every step in the workflow runs in a container, and there several
+ways to pass the information between the steps.</p>
+<p>The example configuration in <code>argo/argo_bucket_run.yaml</code>
+has comments to help you to understand how the files and/or parameters
+can be passed from a step to another.</p>
 </section><section><h2 class="section-heading" id="submit-a-test-job">Submit a test job<a class="anchor" aria-label="anchor" href="#submit-a-test-job"></a></h2>
 <hr class="half-width"><p>Edit the parameters in the <code>argo/argo_bucket_run.yaml</code> so
 that they are</p>
 <pre><code>    parameters:
     - name: nEvents
-      #FIXME
       # Number of events in the dataset to be processed (-1 is all)
       value: 1000
     - name: recid
-      #FIXME
       # Record id of the dataset to be processed
       value: 30511
     - name: nJobs
-      #FIXME
       # Number of jobs the processing workflow should be split into
       value: 2
     - name: bucket
-      #FIXME
       # Name of cloud storage bucket for storing outputs
       value: &lt;YOUR_BUCKET_NAME&gt;</code></pre>
 <p>Now submit the workflow with</p>
@@ -470,6 +475,25 @@ that they are</p>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_pdgid_cands.png</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput1.root</span>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput2.root</span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="delete-resources">Delete resources<a class="anchor" aria-label="anchor" href="#delete-resources"></a></h3>
+<p>Delete the workflow after each run so that the “pods” do not
+accumulate. They are not running anymore but still visible.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
+</div>
+<p>Do not keep the cluster, if you are not running jobs. The cost goes
+by the time it exists, not by the time it is in use. You can delete all
+resources created by the Terraform script with</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">terraform</span> destroy</span></code></pre>
+</div>
+<p>Confirm with “yes”.</p>
 </div>
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
 <hr class="half-width"><div id="keypoints1" class="callout keypoints">
@@ -550,8 +574,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/05-workflow.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/05-workflow.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-16",
-  "datePublished": "2024-10-16"
+  "dateModified": "2024-10-17",
+  "datePublished": "2024-10-17"
 }
 
   </script><script>

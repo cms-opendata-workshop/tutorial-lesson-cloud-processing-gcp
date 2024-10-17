@@ -321,7 +321,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Disk image</h1>
-        <p>Last updated on 2024-10-16 |
+        <p>Last updated on 2024-10-17 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/03-disk-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -384,6 +384,9 @@ We create a bucket for these logs with</p>
 <pre><code>gcloud storage buckets create gs://&lt;BUCKET_FOR_LOGS&gt;/ --location europe-west4</code></pre>
 </div>
 <div class="section level3">
+<h3 id="go-installed">Go installed<a class="anchor" aria-label="anchor" href="#go-installed"></a></h3>
+</div>
+<div class="section level3">
 <h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a></h3>
 <p>Before you can create resources on GCP, you will need to enable the
 corresponding services.</p>
@@ -418,7 +421,7 @@ roles get created. You can list them with</p>
 </div>
 <p>Often, the resources need to work with each other. In this case, the
 Cloud Build service needs to have two additional roles to access Compute
-resources (the image disk belongs to that category)</p>
+resources (the image disk belongs to that category).</p>
 <p>Add them with</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -460,7 +463,23 @@ installed.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>ghcr.io/katilp/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Note that while images can in most cases be “pulled” from Dockerhub
+specifying only the image name
+(e.g. <code>cernopendata/cernopendata-client</code> and
+<code>rootproject/root</code>), in this script you must give the full
+registry address starting with <code>docker.io</code>
+<strong>and</strong> specify a tag (i.e. <code>:latest</code>).</p>
+</div>
+</div>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
@@ -470,7 +489,7 @@ installed.</p>
   Error: Quota exceeded?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Failure with errors of type</p>
 <pre><code>Code: QUOTA_EXCEEDED
@@ -566,8 +585,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/03-disk-image.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/03-disk-image.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-16",
-  "datePublished": "2024-10-16"
+  "dateModified": "2024-10-17",
+  "datePublished": "2024-10-17"
 }
 
   </script><script>
