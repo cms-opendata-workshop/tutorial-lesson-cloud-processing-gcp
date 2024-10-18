@@ -67,10 +67,19 @@ Get them with
 git clone git@github.com:cms-dpoa/cloud-processing.git
 cd cloud-processing/standard-gke-cluster-gcs-imgdisk
 ```
+## About Terraform
+
+The resources are created by [Terraform](https://developer.hashicorp.com/terraform?product_intent=terraform) scripts (with the file extension `.tf`) in the working directory.
+
+In the example case, they are very simple and the same could be easily done with `gcloud` commands.
+
+Terraform, however, makes it easy to change and keep track of the parameters. Read more about Terraform on Google Cloud in the [Terraform overview](https://cloud.google.com/docs/terraform/terraform-overview).
+
+The configurable parameters are defined in `variables.tf` and can be modified in `terraform.tfvars`.
 
 ## Create the cluster
 
-Set the variable in the `terraform.tfvars` files.
+Set the variables in the `terraform.tfvars` files.
 
 Run 
 
@@ -83,8 +92,7 @@ and confirm "yes".
 ## Connect to the cluster and inspect
 
 ```bash
-gcloud container clusters get-credentials cluster-2 --region europe-we
-st4-a --project hip-new-full-account
+gcloud container clusters get-credentials <CLUSTER_NAME> --region europe-west4-a --project <PROJECT_ID>
 ```
 
 ```bash
@@ -95,13 +103,14 @@ kubectl get nodes
 kubectl get ns
 ```
 
-## Enable image streaming
+<!-- ## Enable image streaming
+
+This is finally not needed. The streaming for the secondary disk works even if Image streaming shows Disabled in the cluster features
 
 ```bash
- gcloud container clusters update cluster-2 --zone europe-west4-a --ena
-ble-image-streaming
+ gcloud container clusters update <CLUSTER_NAME> --zone europe-west4-a --enable-image-streaming
 
-```
+``` -->
 
 
 ## Costs
