@@ -511,7 +511,7 @@ or WSL2 on Windows)</label></li>
   Too much to install? I just want a quick try…
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>If you don’t have access to a Linux terminal or prefer not to install
 tools locally, you can use Google Cloud Shell. You’ll need a Google
@@ -1035,7 +1035,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04-cluster"><p>Content from <a href="04-cluster.html">Kubernetes cluster</a></p>
 <hr>
-<p>Last updated on 2024-10-16 |
+<p>Last updated on 2024-10-18 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/04-cluster.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -1127,10 +1127,23 @@ in</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
 </div>
+</section><section><h2 class="section-heading" id="about-terraform">About Terraform<a class="anchor" aria-label="anchor" href="#about-terraform"></a>
+</h2>
+<hr class="half-width">
+<p>The resources are created by <a href="https://developer.hashicorp.com/terraform?product_intent=terraform" class="external-link">Terraform</a>
+scripts (with the file extension <code>.tf</code>) in the working
+directory.</p>
+<p>In the example case, they are very simple and the same could be
+easily done with <code>gcloud</code> commands.</p>
+<p>Terraform, however, makes it easy to change and keep track of the
+parameters. Read more about Terraform on Google Cloud in the <a href="https://cloud.google.com/docs/terraform/terraform-overview" class="external-link">Terraform
+overview</a>.</p>
+<p>The configurable parameters are defined in <code>variables.tf</code>
+and can be modified in <code>terraform.tfvars</code>.</p>
 </section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a>
 </h2>
 <hr class="half-width">
-<p>Set the variable in the <code>terraform.tfvars</code> files.</p>
+<p>Set the variables in the <code>terraform.tfvars</code> files.</p>
 <p>Run</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1144,8 +1157,7 @@ in</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials cluster-2 <span class="at">--region</span> europe-we</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">st4-a</span> <span class="at">--project</span> hip-new-full-account</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1157,15 +1169,14 @@ in</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
 </div>
-</section><section><h2 class="section-heading" id="enable-image-streaming">Enable image streaming<a class="anchor" aria-label="anchor" href="#enable-image-streaming"></a>
-</h2>
-<hr class="half-width">
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a> <span class="ex">gcloud</span> container clusters update cluster-2 <span class="at">--zone</span> europe-west4-a <span class="at">--ena</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ble-image-streaming</span></span></code></pre>
-</div>
+<!-- ## Enable image streaming
+
+This is finally not needed. The streaming for the secondary disk works even if Image streaming shows Disabled in the cluster features
+
+```bash
+ gcloud container clusters update <CLUSTER_NAME> --zone europe-west4-a --enable-image-streaming
+
+``` -->
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a>
 </h2>
 <hr class="half-width">
@@ -1448,8 +1459,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/aio.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/aio.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-17",
-  "datePublished": "2024-10-17"
+  "dateModified": "2024-10-18",
+  "datePublished": "2024-10-18"
 }
 
   </script><script>
