@@ -94,7 +94,9 @@ When done, let's go!
 
 If you don't have access to a Linux terminal or prefer not to install tools locally, you can use Google Cloud Shell. You'll need a Google Cloud Platform (GCP) account and a GCP project. To open Cloud Shell, click the Cloud Shell icon in the top-right corner of the Google Cloud Console.
 
-Cloud Shell comes pre-installed with gcloud, kubectl, terraform, and go. However, you'll need to install the Argo CLI manually
+Cloud Shell comes pre-installed with gcloud, kubectl, terraform, and go. However, you'll need to install the Argo CLI manually.
+
+Remember that while using Cloud Shell is free, you will need to have credits (or pay) for the resources you deploy.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 

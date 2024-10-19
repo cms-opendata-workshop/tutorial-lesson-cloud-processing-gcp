@@ -23,9 +23,7 @@ exercises: 5
 The container image for the MiniAOD processing is very big and it needs to be pulled to the nodes of the cluster. It can take 30 mins to pull it.
 Making it available to the nodes of the cluster through a pre-built secondary disk image speeds up the workflow start.
 
-A script is available but building the disk image does not work for a new GCP account for the moment.
-
-Investigating....
+We will follow the [instructions](https://cloud.google.com/kubernetes-engine/docs/how-to/data-container-image-preloading#prepare) provided by GCP to build the secondary disk image. All necessary steps are provided in this lesson.
 
 
 ## Prerequisites
@@ -49,7 +47,9 @@ We create a bucket for these logs with
 gcloud storage buckets create gs://<BUCKET_FOR_LOGS>/ --location europe-west4
 ```
 
-### Go installed
+### Go installed?
+
+You should have `go` installed, see [Software setup](index.html#software-setup).
 
 ### Enabling services
 
@@ -164,9 +164,15 @@ Note that the bucket for logs has to be in the same region so you might need to 
 
 ## Costs
 
+### Computing
 
+The script runs a Google Cloud Build process and there's per-minute small [cost](https://cloud.google.com/build/pricing). 120 minutes are included in the [Free tier services](https://cloud.google.com/free/docs/free-cloud-features#free-tier-usage-limits). 
 
+### Storage
 
+The image is stored in Google Compute Engine image storage, and the cost is computed by the archive size of the image. The cost is very low: in our example case, the size is 12.25 GB, and the monthly cost is $0.05/GB. 
+
+There's a minimal cost for the output logs GCS bucket. The bucket can be deleted after the build.
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
