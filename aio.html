@@ -356,7 +356,7 @@
         
 <section id="aio-01-intro"><p>Content from <a href="01-intro.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2024-10-14 |
+<p>Last updated on 2024-10-19 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -508,7 +508,7 @@ or WSL2 on Windows)</label></li>
   Too much to install? I just want a quick try…
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If you don’t have access to a Linux terminal or prefer not to install
 tools locally, you can use Google Cloud Shell. You’ll need a Google
@@ -516,7 +516,9 @@ Cloud Platform (GCP) account and a GCP project. To open Cloud Shell,
 click the Cloud Shell icon in the top-right corner of the Google Cloud
 Console.</p>
 <p>Cloud Shell comes pre-installed with gcloud, kubectl, terraform, and
-go. However, you’ll need to install the Argo CLI manually</p>
+go. However, you’ll need to install the Argo CLI manually.</p>
+<p>Remember that while using Cloud Shell is free, you will need to have
+credits (or pay) for the resources you deploy.</p>
 </div>
 </div>
 </div>
@@ -809,7 +811,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-03-disk-image"><p>Content from <a href="03-disk-image.html">Disk image</a></p>
 <hr>
-<p>Last updated on 2024-10-17 |
+<p>Last updated on 2024-10-19 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/03-disk-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -848,9 +850,9 @@ any links that you are not going to use.
 needs to be pulled to the nodes of the cluster. It can take 30 mins to
 pull it. Making it available to the nodes of the cluster through a
 pre-built secondary disk image speeds up the workflow start.</p>
-<p>A script is available but building the disk image does not work for a
-new GCP account for the moment.</p>
-<p>Investigating….</p>
+<p>We will follow the <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/data-container-image-preloading#prepare" class="external-link">instructions</a>
+provided by GCP to build the secondary disk image. All necessary steps
+are provided in this lesson.</p>
 </section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
 </h2>
 <hr class="half-width">
@@ -874,8 +876,9 @@ We create a bucket for these logs with</p>
 <pre><code>gcloud storage buckets create gs://&lt;BUCKET_FOR_LOGS&gt;/ --location europe-west4</code></pre>
 </div>
 <div class="section level3">
-<h3 id="go-installed">Go installed<a class="anchor" aria-label="anchor" href="#go-installed"></a>
+<h3 id="go-installed">Go installed?<a class="anchor" aria-label="anchor" href="#go-installed"></a>
 </h3>
+<p>You should have <code>go</code> installed, see <a href="index.html#software-setup">Software setup</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a>
@@ -1010,6 +1013,23 @@ might need to create another one. Remove the old one with
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a>
 </h2>
 <hr class="half-width">
+<div class="section level3">
+<h3 id="computing">Computing<a class="anchor" aria-label="anchor" href="#computing"></a>
+</h3>
+<p>The script runs a Google Cloud Build process and there’s per-minute
+small <a href="https://cloud.google.com/build/pricing" class="external-link">cost</a>. 120
+minutes are included in the <a href="https://cloud.google.com/free/docs/free-cloud-features#free-tier-usage-limits" class="external-link">Free
+tier services</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="storage">Storage<a class="anchor" aria-label="anchor" href="#storage"></a>
+</h3>
+<p>The image is stored in Google Compute Engine image storage, and the
+cost is computed by the archive size of the image. The cost is very low:
+in our example case, the size is 12.25 GB, and the monthly cost is
+$0.05/GB.</p>
+<p>There’s a minimal cost for the output logs GCS bucket. The bucket can
+be deleted after the build.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1028,6 +1048,7 @@ up the workflow start.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></section><section id="aio-04-cluster"><p>Content from <a href="04-cluster.html">Kubernetes cluster</a></p>
 <hr>
 <p>Last updated on 2024-10-18 |
@@ -1194,7 +1215,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05-workflow"><p>Content from <a href="05-workflow.html">Set up workflow</a></p>
 <hr>
-<p>Last updated on 2024-10-17 |
+<p>Last updated on 2024-10-19 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/05-workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1257,7 +1278,7 @@ now a storage bucket for the output files.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="argo-cli">Argo CLI<a class="anchor" aria-label="anchor" href="#argo-cli"></a>
+<h3 id="argo-cli-installed">Argo CLI installed?<a class="anchor" aria-label="anchor" href="#argo-cli-installed"></a>
 </h3>
 <p>You should have Argo CLI installed, see <a href="index.html#software-setup">Software setup</a>.</p>
 </div>
@@ -1452,8 +1473,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/aio.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/aio.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-18",
-  "datePublished": "2024-10-18"
+  "dateModified": "2024-10-19",
+  "datePublished": "2024-10-19"
 }
 
   </script><script>

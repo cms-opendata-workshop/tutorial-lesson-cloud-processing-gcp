@@ -321,7 +321,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Disk image</h1>
-        <p>Last updated on 2024-10-17 |
+        <p>Last updated on 2024-10-19 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/03-disk-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -360,9 +360,9 @@
 needs to be pulled to the nodes of the cluster. It can take 30 mins to
 pull it. Making it available to the nodes of the cluster through a
 pre-built secondary disk image speeds up the workflow start.</p>
-<p>A script is available but building the disk image does not work for a
-new GCP account for the moment.</p>
-<p>Investigating….</p>
+<p>We will follow the <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/data-container-image-preloading#prepare" class="external-link">instructions</a>
+provided by GCP to build the secondary disk image. All necessary steps
+are provided in this lesson.</p>
 </section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
 <hr class="half-width"><div class="section level3">
 <h3 id="gcp-account-and-project">GCP account and project<a class="anchor" aria-label="anchor" href="#gcp-account-and-project"></a></h3>
@@ -382,7 +382,8 @@ We create a bucket for these logs with</p>
 <pre><code>gcloud storage buckets create gs://&lt;BUCKET_FOR_LOGS&gt;/ --location europe-west4</code></pre>
 </div>
 <div class="section level3">
-<h3 id="go-installed">Go installed<a class="anchor" aria-label="anchor" href="#go-installed"></a></h3>
+<h3 id="go-installed">Go installed?<a class="anchor" aria-label="anchor" href="#go-installed"></a></h3>
+<p>You should have <code>go</code> installed, see <a href="index.html#software-setup">Software setup</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="enabling-services">Enabling services<a class="anchor" aria-label="anchor" href="#enabling-services"></a></h3>
@@ -509,7 +510,22 @@ might need to create another one. Remove the old one with
 </div>
 </div>
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><div class="section level3">
+<h3 id="computing">Computing<a class="anchor" aria-label="anchor" href="#computing"></a></h3>
+<p>The script runs a Google Cloud Build process and there’s per-minute
+small <a href="https://cloud.google.com/build/pricing" class="external-link">cost</a>. 120
+minutes are included in the <a href="https://cloud.google.com/free/docs/free-cloud-features#free-tier-usage-limits" class="external-link">Free
+tier services</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="storage">Storage<a class="anchor" aria-label="anchor" href="#storage"></a></h3>
+<p>The image is stored in Google Compute Engine image storage, and the
+cost is computed by the archive size of the image. The cost is very low:
+in our example case, the size is 12.25 GB, and the monthly cost is
+$0.05/GB.</p>
+<p>There’s a minimal cost for the output logs GCS bucket. The bucket can
+be deleted after the build.</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -525,6 +541,7 @@ up the workflow start.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="02-storage.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -583,8 +600,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/03-disk-image.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/03-disk-image.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-17",
-  "datePublished": "2024-10-18"
+  "dateModified": "2024-10-19",
+  "datePublished": "2024-10-19"
 }
 
   </script><script>
