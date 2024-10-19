@@ -44,7 +44,7 @@ List the buckets with
 gcloud storage ls
 ```
 
-### Argo CLI
+### Argo CLI installed?
 
 You should have Argo CLI installed, see [Software setup](index.html#software-setup).
 
