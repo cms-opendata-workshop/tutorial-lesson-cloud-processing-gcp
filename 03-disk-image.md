@@ -161,6 +161,13 @@ Note that the bucket for logs has to be in the same region so you might need to 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+Once the image is built, you can see it in the list of available images with
+
+```bash
+gcloud compute images list
+```
+
+That's a long list, there are many images already available. Your new image has your project name under "PROJECT" and `secondary-disk-image` under "FAMILY".
 
 ## Costs
 

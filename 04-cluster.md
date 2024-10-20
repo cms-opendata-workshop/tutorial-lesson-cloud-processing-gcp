@@ -79,9 +79,18 @@ The configurable parameters are defined in `variables.tf` and can be modified in
 
 ## Create the cluster
 
-Set the variables in the `terraform.tfvars` files.
+Set the variables in the `terraform.tfvars` files for example to
 
-Run 
+```
+project_id          = "<PROJECT_ID>"
+region              = "europe-west4-a"
+name                = "1"
+gke_num_nodes       = 2
+```
+
+With these parameters, a cluster named `cluster-1` with 2 nodes will be created in the region `europe-west4-a`. You must define your GCP project.
+
+To create the resources, run
 
 ```bash
 terraform apply
@@ -115,10 +124,17 @@ This is finally not needed. The streaming for the secondary disk works even if I
 
 ## Costs
 
+### Cluster management fee
 
+For the GKE "Standard" cluster, there's a cluster management fee of 
+$0.10 per hour.
 
+### CPU and memory
 
+The cost is determined by the machine and disk type and is per time. 
+For this small example cluster with two e2-standard-4 nodes (4 vCPUs and 16 GB memory) the cost the cost is 0.3$ per hour. Each node has a 100 GB disk, and the cost is for two of these disks is 0.006$ per hour, i.e. very small compared to the machine cost.
 
+The cluster usage contributes to the cost through data transfer and networking, but for this example case it is minimal. 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
