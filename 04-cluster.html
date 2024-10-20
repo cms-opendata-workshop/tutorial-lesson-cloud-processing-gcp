@@ -322,7 +322,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Kubernetes cluster</h1>
-        <p>Last updated on 2024-10-18 |
+        <p>Last updated on 2024-10-20 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/04-cluster.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -419,29 +419,37 @@ overview</a>.</p>
 <p>The configurable parameters are defined in <code>variables.tf</code>
 and can be modified in <code>terraform.tfvars</code>.</p>
 </section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a></h2>
-<hr class="half-width"><p>Set the variables in the <code>terraform.tfvars</code> files.</p>
-<p>Run</p>
-<div class="codewrapper sourceCode" id="cb5">
+<hr class="half-width"><p>Set the variables in the <code>terraform.tfvars</code> files for
+example to</p>
+<pre><code><span><span class="va">project_id</span>          <span class="op">=</span> <span class="st">"&lt;PROJECT_ID&gt;"</span></span>
+<span><span class="va">region</span>              <span class="op">=</span> <span class="st">"europe-west4-a"</span></span>
+<span><span class="va">name</span>                <span class="op">=</span> <span class="st">"1"</span></span>
+<span><span class="va">gke_num_nodes</span>       <span class="op">=</span> <span class="fl">2</span></span></code></pre>
+<p>With these parameters, a cluster named <code>cluster-1</code> with 2
+nodes will be created in the region <code>europe-west4-a</code>. You
+must define your GCP project.</p>
+<p>To create the resources, run</p>
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
 </div>
 <p>and confirm “yes”.</p>
 </section><section><h2 class="section-heading" id="connect-to-the-cluster-and-inspect">Connect to the cluster and inspect<a class="anchor" aria-label="anchor" href="#connect-to-the-cluster-and-inspect"></a></h2>
-<hr class="half-width"><div class="codewrapper sourceCode" id="cb6">
+<hr class="half-width"><div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
 </div>
 <!-- ## Enable image streaming
 
@@ -452,7 +460,21 @@ This is finally not needed. The streaming for the secondary disk works even if I
 
 ``` -->
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><div class="section level3">
+<h3 id="cluster-management-fee">Cluster management fee<a class="anchor" aria-label="anchor" href="#cluster-management-fee"></a></h3>
+<p>For the GKE “Standard” cluster, there’s a cluster management fee of
+$0.10 per hour.</p>
+</div>
+<div class="section level3">
+<h3 id="cpu-and-memory">CPU and memory<a class="anchor" aria-label="anchor" href="#cpu-and-memory"></a></h3>
+<p>The cost is determined by the machine and disk type and is per time.
+For this small example cluster with two e2-standard-4 nodes (4 vCPUs and
+16 GB memory) the cost the cost is 0.3$ per hour. Each node has a 100 GB
+disk, and the cost is for two of these disks is 0.006$ per hour,
+i.e. very small compared to the machine cost.</p>
+<p>The cluster usage contributes to the cost through data transfer and
+networking, but for this example case it is minimal.</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -468,6 +490,7 @@ This is finally not needed. The streaming for the secondary disk works even if I
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="03-disk-image.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -526,8 +549,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/04-cluster.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/04-cluster.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-18",
-  "datePublished": "2024-10-19"
+  "dateModified": "2024-10-20",
+  "datePublished": "2024-10-20"
 }
 
   </script><script>
