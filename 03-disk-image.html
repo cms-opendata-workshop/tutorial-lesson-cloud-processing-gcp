@@ -321,7 +321,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Disk image</h1>
-        <p>Last updated on 2024-10-20 |
+        <p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/03-disk-image.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -378,7 +378,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="section level3">
 <h3 id="bucket-for-logs">Bucket for logs<a class="anchor" aria-label="anchor" href="#bucket-for-logs"></a></h3>
 <p>To build an image disk, we will use a script that produces some logs.
-We create a bucket for these logs with</p>
+Create a bucket for these logs with</p>
 <pre><code>gcloud storage buckets create gs://&lt;BUCKET_FOR_LOGS&gt;/ --location europe-west4</code></pre>
 </div>
 <div class="section level3">
@@ -456,7 +456,7 @@ echo "tools/gke-disk-image-builder/" &gt;&gt;  .git/info/sparse-checkout
 git pull origin main
 cd tools/gke-disk-image-builder/</code></pre>
 </section><section><h2 class="section-heading" id="create-the-image">Create the image<a class="anchor" aria-label="anchor" href="#create-the-image"></a></h2>
-<hr class="half-width"><p>To create the image with the script, you must have <code>go</code>
+<hr class="half-width"><p>To run the script to build the image, you must have <code>go</code>
 installed.</p>
 <p>Run the script with</p>
 <div class="codewrapper sourceCode" id="cb12">
@@ -464,6 +464,22 @@ installed.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
 </div>
+<p>The script will create a secondary disk images with the container
+images that are needed in the processing workflow:</p>
+<ul><li>
+<code>cernopendata/cernopendata-client</code> for getting the
+metadata</li>
+<li>
+<code>ghcr.io/cms-dpoa/pfnano-image-build:main</code> for the
+processing</li>
+<li>
+<code>rootproject/root</code> for an eventual test plot.</li>
+</ul><p>The container image <code>pfnano-image-build</code> is the standard
+<a href="https://opendata.cern.ch/docs/cms-guide-docker#images" class="external-link">CMS Open
+data container image</a> with the <a href="https://opendata.cern.ch/record/12504" class="external-link">PFNano processing code</a>
+compiled.</p>
+<p>Note the <code>timeout</code> options, the default tiemout of 20 mins
+is not enough.</p>
 <div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -610,7 +626,7 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/03-disk-image.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/03-disk-image.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-20",
+  "dateModified": "2024-10-21",
   "datePublished": "2024-10-21"
 }
 
