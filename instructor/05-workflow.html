@@ -253,7 +253,6 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#get-the-code">Get the code</a></li>
 <li><a href="#deploy-argo-workflows-service">Deploy Argo Workflows service</a></li>
 <li><a href="#about-argo-workflows">About Argo Workflows</a></li>
 <li><a href="#submit-a-test-job">Submit a test job</a></li>
@@ -322,7 +321,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Set up workflow</h1>
-        <p>Last updated on 2024-10-19 |
+        <p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/05-workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -385,49 +384,46 @@ now a storage bucket for the output files.</p>
 </div>
 </div>
 <div class="section level3">
+<h3 id="code">Code<a class="anchor" aria-label="anchor" href="#code"></a></h3>
+<p>In the <a href="04-cluster">previous section</a>, you pulled the code
+and move to the
+<code>cloud-processing/standard-gke-cluster-gcs-imgdisk</code>
+directory.</p>
+</div>
+<div class="section level3">
 <h3 id="argo-cli-installed">Argo CLI installed?<a class="anchor" aria-label="anchor" href="#argo-cli-installed"></a></h3>
 <p>You should have Argo CLI installed, see <a href="index.html#software-setup">Software setup</a>.</p>
 </div>
-</section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a></h2>
-<hr class="half-width"><p>The example Terraform scripts and Argo Workflow configuration are
-in</p>
-<p>Get them with</p>
+</section><section><h2 class="section-heading" id="deploy-argo-workflows-service">Deploy Argo Workflows service<a class="anchor" aria-label="anchor" href="#deploy-argo-workflows-service"></a></h2>
+<hr class="half-width"><p>Deploy Argo Workflows services with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
-</div>
-</section><section><h2 class="section-heading" id="deploy-argo-workflows-service">Deploy Argo Workflows service<a class="anchor" aria-label="anchor" href="#deploy-argo-workflows-service"></a></h2>
-<hr class="half-width"><p>Deploy Argo Workflows services with</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-n</span> argo  <span class="at">-f</span> https://github.com/argoproj/argo-workflows/releases/download/v3.5.10/install.yaml</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/service_account.yaml</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role.yaml</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role_binding.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-n</span> argo  <span class="at">-f</span> https://github.com/argoproj/argo-workflows/releases/download/v3.5.10/install.yaml</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/service_account.yaml</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role.yaml</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role_binding.yaml</span></code></pre>
 </div>
 <p>Wait for the services to start.</p>
 <p>You should see the following:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">$</span> kubectl get all <span class="at">-n</span> argo</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">NAME</span>                                       READY   STATUS    RESTARTS   AGE</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">pod/argo-server-5f7b589d6f-jkf4z</span>           1/1     Running   0          24s</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">pod/workflow-controller-864c88655d-wsfr8</span>   1/1     Running   0          24s</span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">NAME</span>                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>    <span class="ex">AGE</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">service/argo-server</span>   ClusterIP   34.118.233.69   <span class="op">&lt;</span>none<span class="op">&gt;</span>        2746/TCP   25s</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="ex">NAME</span>                                  READY   UP-TO-DATE   AVAILABLE   AGE</span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="ex">deployment.apps/argo-server</span>           1/1     1            1           24s</span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="ex">deployment.apps/workflow-controller</span>   1/1     1            1           24s</span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="ex">NAME</span>                                             DESIRED   CURRENT   READY   AGE</span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="ex">replicaset.apps/argo-server-5f7b589d6f</span>           1         1         1       24s</span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="ex">replicaset.apps/workflow-controller-864c88655d</span>   1         1         1       24s</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> kubectl get all <span class="at">-n</span> argo</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">NAME</span>                                       READY   STATUS    RESTARTS   AGE</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">pod/argo-server-5f7b589d6f-jkf4z</span>           1/1     Running   0          24s</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">pod/workflow-controller-864c88655d-wsfr8</span>   1/1     Running   0          24s</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">NAME</span>                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>    <span class="ex">AGE</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">service/argo-server</span>   ClusterIP   34.118.233.69   <span class="op">&lt;</span>none<span class="op">&gt;</span>        2746/TCP   25s</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">NAME</span>                                  READY   UP-TO-DATE   AVAILABLE   AGE</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">deployment.apps/argo-server</span>           1/1     1            1           24s</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">deployment.apps/workflow-controller</span>   1/1     1            1           24s</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="ex">NAME</span>                                             DESIRED   CURRENT   READY   AGE</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="ex">replicaset.apps/argo-server-5f7b589d6f</span>           1         1         1       24s</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="ex">replicaset.apps/workflow-controller-864c88655d</span>   1         1         1       24s</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="about-argo-workflows">About Argo Workflows<a class="anchor" aria-label="anchor" href="#about-argo-workflows"></a></h2>
 <hr class="half-width"><p>The data processing example is defined as an Argo workflow. You can
@@ -438,7 +434,19 @@ ways to pass the information between the steps.</p>
 has comments to help you to understand how the files and/or parameters
 can be passed from a step to another.</p>
 </section><section><h2 class="section-heading" id="submit-a-test-job">Submit a test job<a class="anchor" aria-label="anchor" href="#submit-a-test-job"></a></h2>
-<hr class="half-width"><p>Edit the parameters in the <code>argo/argo_bucket_run.yaml</code> so
+<hr class="half-width"><p>The workflow is defined in the <code>argo/argo_bucket_run.yaml</code>
+file. It is composed of four steps:</p>
+<ul><li>
+<code>get-metadata</code>: gets the number of files and the file
+list for a given CMS Open Data 2016 MiniAOD record</li>
+<li>
+<code>joblist</code>: divides the file list into given number of
+jobs and coumputes the number of events per job (if not all)</li>
+<li>
+<code>runpfnano</code>: runs the processing in parallel jobs</li>
+<li>
+<code>plot</code>: creates some simple plots.</li>
+</ul><p>Edit the parameters in the <code>argo/argo_bucket_run.yaml</code> so
 that they are</p>
 <pre><code>    parameters:
     - name: nEvents
@@ -454,51 +462,64 @@ that they are</p>
       # Name of cloud storage bucket for storing outputs
       value: &lt;YOUR_BUCKET_NAME&gt;</code></pre>
 <p>Now submit the workflow with</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
+</div>
+<p>Observe its progress with</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">argo</span> get <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
-<p>Observe its progress with</p>
+<p>Once done, check the ouput in the bucket with</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">argo</span> get <span class="at">-n</span> argo @latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> gcloud storage ls gs://<span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">**</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/files_30511.txt</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/1.logs</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/2.logs</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_num_cands.png</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_pdgid_cands.png</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput1.root</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput2.root</span></code></pre>
 </div>
-<p>Once done, check the ouput in the bucket with</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> gcloud storage ls gs://<span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">**</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/files_30511.txt</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/1.logs</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/2.logs</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_num_cands.png</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_pdgid_cands.png</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput1.root</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput2.root</span></code></pre>
-</div>
+<p>You can copy the files with <code>gcloud storage cp ...</code>.</p>
 <div class="section level3">
 <h3 id="delete-resources">Delete resources<a class="anchor" aria-label="anchor" href="#delete-resources"></a></h3>
 <p>Delete the workflow after each run so that the “pods” do not
 accumulate. They are not running anymore but still visible.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
 <p>Do not keep the cluster, if you are not running jobs. The cost goes
 by the time it exists, not by the time it is in use. You can delete all
 resources created by the Terraform script with</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">terraform</span> destroy</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">terraform</span> destroy</span></code></pre>
 </div>
 <p>Confirm with “yes”.</p>
 </div>
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><div class="section level3">
+<h3 id="cluster">Cluster<a class="anchor" aria-label="anchor" href="#cluster"></a></h3>
+<p>Using the cluster does not increase the cost, so for this small test,
+the estimates in the <a href="04-cluster#costs">previous section</a> are
+valid.</p>
+</div>
+<div class="section level3">
+<h3 id="data-download">Data download<a class="anchor" aria-label="anchor" href="#data-download"></a></h3>
+<p>As detailed in <a href="02-storage#networking-and-download">Section
+02</a>, downloading data from the storage costs $0.12 / GB. The output
+file size - and consequently the cost - for this quick example is
+small.</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -518,6 +539,7 @@ commands or on Google Cloud Console Web UI.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/04-cluster.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -576,7 +598,7 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/05-workflow.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/05-workflow.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-19",
+  "dateModified": "2024-10-21",
   "datePublished": "2024-10-21"
 }
 
