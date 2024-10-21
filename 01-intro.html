@@ -221,6 +221,7 @@
 <li><a href="#terraform">Terraform</a></li>
 <li><a href="#kubernetes">Kubernetes</a></li>
 <li><a href="#argo-workflows">Argo Workflows</a></li>
+<li><a href="#ready-to-go">Ready to go?</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -321,7 +322,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2024-10-19 |
+        <p>Last updated on 2024-10-21 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/01-intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -375,12 +376,11 @@ through the tutorials in one of our <a href="https://cms-opendata-guide.web.cern
 </div>
 </div>
 </div>
-<p>This is an option for you if you do not have enough computing
-resources and want to run some heavy processing. In this tutorial, we
-use as an <a href="https://opendata.cern.ch/record/12504" class="external-link">example
-processing</a> of CMS open data MiniAOD to a “custom” NanoAOD, including
-more information than the standard NanoAOD but still in the same flat
-file format.</p>
+<p>Using public cloud resources is an option for you if you do not have
+enough computing resources and want to run some heavy processing. In
+this tutorial, we use as an <a href="https://opendata.cern.ch/record/12504" class="external-link">example processing</a> of
+CMS open data MiniAOD to a “custom” NanoAOD, including more information
+than the standard NanoAOD but still in the same flat file format.</p>
 <p>We assume that you would want to download the output files to your
 local area and analyse them with your own resources. Note that analysis
 using GCP resources with your files stored on GCP is also possible, but
@@ -388,9 +388,9 @@ is not covered in this tutorial.</p>
 </section><section><h2 class="section-heading" id="google-cloud-platform">Google Cloud Platform<a class="anchor" aria-label="anchor" href="#google-cloud-platform"></a></h2>
 <hr class="half-width"><p>Public cloud providers are companies that offers computing resources
 and services over the internet to multiple users or organizations.
-Google Cloud Platform (GCP) is one of them. You define the resources
-that you need and pay for what you use. As many other such resource
-providers (for example AWS, Azure, OHV), it offers some free
+Google Cloud Platform (GCP) is one of them. You define and deploy the
+resources that you need and pay for what you use. As many other such
+resource providers (for example AWS, Azure, OHV), it offers some free
 getting-started “credits”.</p>
 <div id="callout2" class="callout">
 <div class="callout-square">
@@ -399,6 +399,9 @@ getting-started “credits”.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
+<p>GCP offers <a href="https://cloud.google.com/free/docs/free-cloud-features#free-trial" class="external-link">free
+trial</a> credits for $300 for a new account. This credit is valid for
+90 days.</p>
 <p>This tutorial was set up using <a href="https://cloud.google.com/edu/researchers" class="external-link">Google Cloud Research
 credits</a>. You can apply for similar credits for your research
 projects. Take note that the credit has to be used within 12 months.</p>
@@ -434,12 +437,13 @@ Workflows</a> to define (or “orchestrate”) the workflow steps.</p>
 <p>In this tutorial, the Argo Workflows services are set up using a
 <code>kubectl</code> command. We use <code>argo</code>, the command-line
 tool, to submit and manage the workflows.</p>
-<div id="ready-to-go" class="callout checklist">
+</section><section><h2 class="section-heading" id="ready-to-go">Ready to go?<a class="anchor" aria-label="anchor" href="#ready-to-go"></a></h2>
+<hr class="half-width"><div id="checklist1" class="callout checklist">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check-square"></i>
 </div>
-<div id="ready-to-go" class="callout-inner">
-<h3 class="callout-title">Ready to go?</h3>
+<div class="callout-inner">
+<h3 class="callout-title">Checklist</h3>
 <div class="callout-content">
 <p>Check the instructions in <a href="index.html#software-setup">Software setup</a></p>
 <ul class="task-list"><li><label><input type="checkbox">a GCP account and a GCP
@@ -560,8 +564,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/01-intro.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/01-intro.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-19",
-  "datePublished": "2024-10-20"
+  "dateModified": "2024-10-21",
+  "datePublished": "2024-10-21"
 }
 
   </script><script>
