@@ -20,19 +20,6 @@ exercises: 5
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Prerequisites
-
-
-### GCP account and project
-
-Make sure that you are in the GCP account and project that you intend to use for this work. In your Linux terminal, type
-
-```bash
-gcloud config list
-```
-
-The output shows your account and project. 
-
 ## Resource needs
 
 
@@ -86,9 +73,9 @@ Once you have understood the resource consumption for a single job, delete the c
 ### Input data
 
 The optimal cluster configuration depends on the input dataset.
-Datasets are consits of files, and the number of files can vary. In practical terms, the input to the parallel processing steps is a list of files. Dividing input files to different processing steps can be done, but would require a filtering list as an input to the processing.  
+Datasets consist of files, and the number of files can vary. In practical terms, the input to the parallel processing steps is a list of files. Dividing events from input files to different processing steps can be done, but would require a filtering list as an input to the processing.  
 
-In an ideal case, the parallel steps take the same amount to run. However, this is usually not the case because
+In an ideal case, the parallel steps should take the same amount of time to complete. However, this is usually not the case because
 
 - input files are not equal in size
 - processing time per events can vary.
@@ -106,7 +93,7 @@ region              = "europe-west4"
 gke_num_nodes       = 30
 ```
 
-Note that if the "zone" (a, b or c in the location name) is not defined, the cluster will have 30 nodes in each zone, in total 90.
+Note that as the "zone" (a, b or c in the location name) is not defined, the cluster will have 30 nodes in each zone, in total 90.
 
 Alternatively, a smaller cluster would be less expensive per unit time but the processing takes a longer. In the benchmarking, a large cluster was found to be practical.
 
