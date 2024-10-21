@@ -479,6 +479,13 @@ propagate.</p>
 </div>
 <div class="section level3">
 <h3 id="autoscaling">Autoscaling<a class="anchor" aria-label="anchor" href="#autoscaling"></a></h3>
+<p>The Terraform script <code>gke.tf</code> has the autoscaling
+activated. This makes the cluster scale up or down according to
+resources in use. This reduces the cost in particular for a cluster with
+a big amount of nodes. It often happens that some jobs get longer than
+the other, and in that case the cluster lifetime (and the cost) is
+defined by the longest job. Autoscaling removes the nodes once they do
+not have active processes running.</p>
 </div>
 </section><section><h2 class="section-heading" id="costs">Costs<a class="anchor" aria-label="anchor" href="#costs"></a></h2>
 <hr class="half-width"><div class="section level3">
