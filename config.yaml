@@ -68,6 +68,7 @@ episodes:
 - 03-disk-image.md
 - 04-cluster.md
 - 05-workflow.md
+- 06-scaleup.md
 
 # Information for Learners
 learners: 
