@@ -59,11 +59,11 @@ The example processing workflow is defined as an "Argo workflow". To be able to 
 
 This tutorial uses a CMSSW open data container image with the [pfnano producer code](https://opendata.cern.ch/record/12504) downloaded and compiled. You do not need to install Docker to use it in the context of this tutorial. You need Docker, if you want to modify the code with your selections and build a new container image. 
 
-### Optional for building an image disk: go
+### Building an image disk: go
 
 A secondary boot disk image with the CMSSW container image preinstalled makes the processing workflow step start immediately. Otherwise, the image needs to be pulled at the start of the processing step and done for each cluster node separately. 
 
-This disk image can be created and stored using GCP resources. A `go` script is [available](https://github.com/GoogleCloudPlatform/ai-on-gke/tree/main/tools/gke-disk-image-builder) for creating the image. To run it, install `go` following [these instructions](https://go.dev/doc/install) (WSL2 users should follow the Linux instructions).
+This disk image can be created and stored using GCP resources. A `go` script is available for creating the image. To run it, install `go` following [these instructions](https://go.dev/doc/install) (WSL2 users should follow the Linux instructions).
 
 
 
