@@ -169,11 +169,11 @@ Confirm with "yes".
 
 ### Cluster
 
-Using the cluster does not increase the cost, so for this small test, the estimates in the [previous section](episodes/04-cluster#costs) are valid.
+Running the workflow in the cluster does not increase the cost, so for this small test, the estimates in the [previous section](episodes/04-cluster#costs) are valid.
 
 ### Data download
 
-As detailed in [Section 02](episodes/02-storage#networking-and-download), downloading data from the storage costs $0.12 / GB. The output file size - and consequently the cost - for this quick example is small.
+As detailed in [Section 02](episodes/02-storage#networking-and-download), downloading data from the storage costs $0.12 / GB. The output file size - and consequently the download cost - for this quick example is small.
 
 
 
