@@ -261,8 +261,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#resource-needs">Resource needs</a></li>
+        <ul><li><a href="#resource-needs">Resource needs</a></li>
 <li><a href="#cluster-configuration">Cluster configuration</a></li>
 <li><a href="#costs">Costs</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -367,35 +366,23 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
-<hr class="half-width"><div class="section level3">
-<h3 id="gcp-account-and-project">GCP account and project<a class="anchor" aria-label="anchor" href="#gcp-account-and-project"></a></h3>
-<p>Make sure that you are in the GCP account and project that you intend
-to use for this work. In your Linux terminal, type</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
-</div>
-<p>The output shows your account and project.</p>
-</div>
-</section><section><h2 class="section-heading" id="resource-needs">Resource needs<a class="anchor" aria-label="anchor" href="#resource-needs"></a></h2>
+<section><h2 class="section-heading" id="resource-needs">Resource needs<a class="anchor" aria-label="anchor" href="#resource-needs"></a></h2>
 <hr class="half-width"><div class="section level3">
 <h3 id="create-a-small-cluster-and-connect">Create a small cluster and connect<a class="anchor" aria-label="anchor" href="#create-a-small-cluster-and-connect"></a></h3>
 <p>If you do not have the cluster from the previous sections, create a
 new one. Set the number of nodes <code>gke_num_nodes</code> to 2 in the
 <code>terraform.tfvars</code> file and create the resources, run</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
 </div>
 <p>and confirm “yes”.</p>
 <p>Connect to it with</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -403,10 +390,10 @@ new one. Set the number of nodes <code>gke_num_nodes</code> to 2 in the
 <p>Run a small test as in the previous section, but set the number of
 step to one. While the job is running, observe the resources usage
 with</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">kubectl</span> get pods</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">kubectl</span> get pods</span></code></pre>
 </div>
 <p>The big processing step - with <code>runpfnano</code> in the name -
 defines the resource needs. The output indicates how much CPU (in units
@@ -432,12 +419,13 @@ delete the cluster with <code>terraform destroy</code>.</p>
 <hr class="half-width"><div class="section level3">
 <h3 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a></h3>
 <p>The optimal cluster configuration depends on the input dataset.
-Datasets are consits of files, and the number of files can vary. In
+Datasets consist of files, and the number of files can vary. In
 practical terms, the input to the parallel processing steps is a list of
-files. Dividing input files to different processing steps can be done,
-but would require a filtering list as an input to the processing.</p>
-<p>In an ideal case, the parallel steps take the same amount to run.
-However, this is usually not the case because</p>
+files. Dividing events from input files to different processing steps
+can be done, but would require a filtering list as an input to the
+processing.</p>
+<p>In an ideal case, the parallel steps should take the same amount of
+time to complete. However, this is usually not the case because</p>
 <ul><li>input files are not equal in size</li>
 <li>processing time per events can vary.</li>
 </ul><p>However, the best approach is to have the same amount of files in
@@ -452,7 +440,7 @@ full occupation of the cluster.</p>
 <pre><code><span><span class="va">project_id</span>          <span class="op">=</span> <span class="st">"&lt;PROJECT_ID&gt;"</span></span>
 <span><span class="va">region</span>              <span class="op">=</span> <span class="st">"europe-west4"</span></span>
 <span><span class="va">gke_num_nodes</span>       <span class="op">=</span> <span class="fl">30</span></span></code></pre>
-<p>Note that if the “zone” (a, b or c in the location name) is not
+<p>Note that as the “zone” (a, b or c in the location name) is not
 defined, the cluster will have 30 nodes in each zone, in total 90.</p>
 <p>Alternatively, a smaller cluster would be less expensive per unit
 time but the processing takes a longer. In the benchmarking, a large
@@ -465,7 +453,7 @@ cluster was found to be practical.</p>
   Insufficient quota?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>GCP sets quotas to resources, and you can either increase them - to a
 certain limit - or request a quota increase.</p>
