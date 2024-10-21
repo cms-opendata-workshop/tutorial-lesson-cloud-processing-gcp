@@ -157,7 +157,9 @@ Delete the workflow after each run so that the "pods" do not accumulate. They ar
 argo delete -n argo @latest
 ```
 
-Do not keep the cluster, if you are not running jobs. The cost goes by the time it exists, not by the time it is in use. You can delete all resources created by the Terraform script with
+Do not delete the cluster if you plan to continue to the [next section](episodes/06-scaleup), but do not keep it idle. The cost goes by the time it exists, not by the time it is in use. You can always create a new cluster.
+
+You can delete all resources created by the Terraform script with
 
 ```bash
 terraform destroy
