@@ -496,9 +496,10 @@ accumulate. They are not running anymore but still visible.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
-<p>Do not keep the cluster, if you are not running jobs. The cost goes
-by the time it exists, not by the time it is in use. You can delete all
-resources created by the Terraform script with</p>
+<p>Do not delete the cluster if you plan to continue to the <a href="06-scaleup">next section</a>, but do not keep it idle. The cost
+goes by the time it exists, not by the time it is in use. You can always
+create a new cluster.</p>
+<p>You can delete all resources created by the Terraform script with</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>

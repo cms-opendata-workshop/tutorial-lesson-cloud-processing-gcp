@@ -513,7 +513,7 @@ or WSL2 on Windows)</label></li>
   Too much to install? I just want a quick try…
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If you don’t have access to a Linux terminal or prefer not to install
 tools locally, you can use Google Cloud Shell. You’ll need a Google
@@ -1192,7 +1192,7 @@ and can be modified in <code>terraform.tfvars</code>.</p>
 </section><section><h2 class="section-heading" id="create-the-cluster">Create the cluster<a class="anchor" aria-label="anchor" href="#create-the-cluster"></a>
 </h2>
 <hr class="half-width">
-<p>Set the variables in the <code>terraform.tfvars</code> files for
+<p>Set the variables in the <code>terraform.tfvars</code> file for
 example to</p>
 <pre><code><span><span class="va">project_id</span>          <span class="op">=</span> <span class="st">"&lt;PROJECT_ID&gt;"</span></span>
 <span><span class="va">region</span>              <span class="op">=</span> <span class="st">"europe-west4-a"</span></span>
@@ -1472,9 +1472,10 @@ accumulate. They are not running anymore but still visible.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
-<p>Do not keep the cluster, if you are not running jobs. The cost goes
-by the time it exists, not by the time it is in use. You can delete all
-resources created by the Terraform script with</p>
+<p>Do not delete the cluster if you plan to continue to the <a href="06-scaleup">next section</a>, but do not keep it idle. The cost
+goes by the time it exists, not by the time it is in use. You can always
+create a new cluster.</p>
+<p>You can delete all resources created by the Terraform script with</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
