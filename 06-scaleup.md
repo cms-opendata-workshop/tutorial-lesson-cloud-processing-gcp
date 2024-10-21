@@ -125,6 +125,8 @@ If you can't increase them to desired value, submit a quota increase request thr
 
 ### Autoscaling
 
+The Terraform script `gke.tf` has the autoscaling activated.
+This makes the cluster scale up or down according to resources in use. This reduces the cost in particular for a cluster with a big amount of nodes. It often happens that some jobs get longer than the other, and in that case the cluster lifetime (and the cost) is defined by the longest job. Autoscaling removes the nodes once they do not have active processes running.
 
 
 
