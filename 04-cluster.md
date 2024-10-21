@@ -59,7 +59,7 @@ If you worked through Section 03, you have a secondary boot disk image available
 
 ## Get the code
 
-The example Terraform scripts and Argo Workflow configuration are in 
+The example Terraform scripts and Argo Workflow configuration are in https://github.com/cms-dpoa/cloud-processing/tree/main/standard-gke-cluster-gcs-imgdisk
 
 Get them with
 
@@ -100,17 +100,28 @@ and confirm "yes".
 
 ## Connect to the cluster and inspect
 
+Once the cluster is created - it will take a while - connect to it with
+
 ```bash
 gcloud container clusters get-credentials <CLUSTER_NAME> --region europe-west4-a --project <PROJECT_ID>
 ```
+
+You can inspect the cluster with `kubectl` commands, for example the nodes: 
+
 
 ```bash
 kubectl get nodes
 ```
 
+and the namespaces:
+
 ```bash
 kubectl get ns
 ```
+
+You will see several namespaces, and most of them are used by Kubernetes for different services. We will be using the `argo` namespace.
+
+For more information about `kubectl`, check the [Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/) and the links therein, or use the `--help` option with any of the `kubectl` commands.
 
 <!-- ## Enable image streaming
 
@@ -139,7 +150,7 @@ The cluster usage contributes to the cost through data transfer and networking, 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Kubernetes clusters can be created with Terraform scripts.
-- kubectl is the tool to interact with the cluster.
+- `kubectl` is the tool to interact with the cluster.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
