@@ -88,7 +88,7 @@ gcloud projects list
 
 ### Billing account?
 
-If this is your first project or you created it from the Google Cloud Console Web UI, it will have a billing account linked to it.
+If this is your first project or you created it from the Google Cloud Console Web UI, it will have a billing account linked to it, and you are ready to go.
 
 If you created the project from the command line without specifying the billing account, you must link it to an existing billing account.
 
@@ -120,7 +120,7 @@ gcloud billing projects link <PROJECT_ID> --billing-account <ACCOUNT_ID>
 
 In this tutorial, we will use the Google computing centre `europe-west4` located in Netherlands. You can use another one, but use it consistently.
 
-If you computing resources are in a different region than your storage, additional cost and delay may occur.
+If you computing resources are in a different region than your storage, additional costs and delay may occur.
 
 ## Create the bucket
 
