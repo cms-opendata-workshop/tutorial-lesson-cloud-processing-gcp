@@ -44,21 +44,15 @@ List the buckets with
 gcloud storage ls
 ```
 
+### Code
+
+In the [previous section](episodes/04-cluster), you pulled the code and move to the `cloud-processing/standard-gke-cluster-gcs-imgdisk` directory.
+
 ### Argo CLI installed?
 
 You should have Argo CLI installed, see [Software setup](index.html#software-setup).
 
 
-## Get the code
-
-The example Terraform scripts and Argo Workflow configuration are in 
-
-Get them with
-
-```bash
-git clone git@github.com:cms-dpoa/cloud-processing.git
-cd cloud-processing/standard-gke-cluster-gcs-imgdisk
-```
 
 ## Deploy Argo Workflows service
 
@@ -103,6 +97,13 @@ The example configuration in `argo/argo_bucket_run.yaml` has comments to help yo
 
 ## Submit a test job
 
+The workflow is defined in the `argo/argo_bucket_run.yaml` file. It is composed of four steps:
+
+- `get-metadata`: gets the number of files and the file list for a given CMS Open Data 2016 MiniAOD record
+- `joblist`: divides the file list into given number of jobs and coumputes the number of events per job (if not all)
+- `runpfnano`: runs the processing in parallel jobs
+- `plot`: creates some simple plots.
+
 Edit the parameters in the `argo/argo_bucket_run.yaml` so that they are
 
 ```
@@ -146,6 +147,8 @@ gs://<YOUR_BUCKET_NAME>/pfnano/30511/scatter/pfnanooutput1.root
 gs://<YOUR_BUCKET_NAME>/pfnano/30511/scatter/pfnanooutput2.root
 ```
 
+You can copy the files with `gcloud storage cp ...`.
+
 ### Delete resources
 
 Delete the workflow after each run so that the "pods" do not accumulate. They are not running anymore but still visible.
@@ -163,6 +166,17 @@ terraform destroy
 Confirm with "yes".
 
 ## Costs
+
+### Cluster
+
+Using the cluster does not increase the cost, so for this small test, the estimates in the [previous section](episodes/04-cluster#costs) are valid.
+
+### Data download
+
+As detailed in [Section 02](episodes/02-storage#networking-and-download), downloading data from the storage costs $0.12 / GB. The output file size - and consequently the cost - for this quick example is small.
+
+
+
 
 
 
