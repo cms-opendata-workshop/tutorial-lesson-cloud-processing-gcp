@@ -41,7 +41,7 @@ The output shows your account and project.
 ### Bucket for logs
 
 To build an image disk, we will use a script that produces some logs.
-We create a bucket for these logs with
+Create a bucket for these logs with
 
 ```
 gcloud storage buckets create gs://<BUCKET_FOR_LOGS>/ --location europe-west4
@@ -126,13 +126,23 @@ cd tools/gke-disk-image-builder/
 
 ## Create the image
 
-To create the image with the script, you must have `go` installed.
+To run the script to build the image, you must have `go` installed.
 
 Run the script with
 
 ```bash
 go run ./cli --project-name=<PROJECT_ID> --image-name=pfnano-disk-image --zone=europe-west4-a --gcs-path=gs://<BUCKET_FOR_LOGS> --disk-size-gb=50 --container-image=docker.io/cernopendata/cernopendata-client:latest --container-image=docker.io/rootproject/root:latest  --container-image=ghcr.io/cms-dpoa/pfnano-image-build:main --timeout 100m
 ```
+
+The script will create a secondary disk images with the container images that are needed in the processing workflow:
+
+- `cernopendata/cernopendata-client` for getting the metadata
+- `ghcr.io/cms-dpoa/pfnano-image-build:main` for the processing
+- `rootproject/root` for an eventual test plot.
+
+The container image `pfnano-image-build` is the standard [CMS Open data container image](https://opendata.cern.ch/docs/cms-guide-docker#images) with the [PFNano processing code](https://opendata.cern.ch/record/12504) compiled.
+
+Note the `timeout` options, the default tiemout of 20 mins is not enough.
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
