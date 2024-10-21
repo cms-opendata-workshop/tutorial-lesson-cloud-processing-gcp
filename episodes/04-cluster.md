@@ -79,7 +79,7 @@ The configurable parameters are defined in `variables.tf` and can be modified in
 
 ## Create the cluster
 
-Set the variables in the `terraform.tfvars` files for example to
+Set the variables in the `terraform.tfvars` file for example to
 
 ```
 project_id          = "<PROJECT_ID>"
