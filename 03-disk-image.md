@@ -41,7 +41,7 @@ The output shows your account and project.
 ### Bucket for logs
 
 To build an image disk, we will use a script that produces some logs.
-Create a bucket for these logs with
+Create a bucket for these logs (choose a name and substitute `<BUCKET_FOR_LOGS>` with it in the following):
 
 ```
 gcloud storage buckets create gs://<BUCKET_FOR_LOGS>/ --location europe-west4
@@ -81,7 +81,7 @@ When services are enabled, some "service accounts" with specific roles get creat
 gcloud projects get-iam-policy <PROJECT_ID>
 ```
 
-Often, the resources need to work with each other. In this case, the Cloud Build service needs to have two additional roles to access Compute resources (the image disk belongs to that category).
+Often, the resources need to work with each other. In this case, the Cloud Build service builds the image and writes it to an image disk. Therefore, the Cloud Build service needs to have two additional roles to access Compute resources (the image disk belongs to that category).
 
 Add them with
 
@@ -142,7 +142,7 @@ The script will create a secondary disk images with the container images that ar
 
 The container image `pfnano-image-build` is the standard [CMS Open data container image](https://opendata.cern.ch/docs/cms-guide-docker#images) with the [PFNano processing code](https://opendata.cern.ch/record/12504) compiled.
 
-Note the `timeout` options, the default tiemout of 20 mins is not enough.
+Note the `timeout` options, the default timeout of 20 mins is not enough.
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
@@ -161,11 +161,10 @@ Code: QUOTA_EXCEEDED
 Message: Quota 'N2_CPUS' exceeded.
 ```
 
-are due to requested machine type no being available in the requested zone. Nothing to do with you quota.
+can be due to requested machine type no being available in the requested zone. In that case, they have nothing to do with you quota.
 
 Try in a different region or with a different machine type. You can give them as parameters  e.g. `--zone=europe-west4-a --machine-type=e2-standard-4`.
 Independent of the zone specified in parameters, the disk image will have `eu` as the location, so any zone in `europe` is OK (if you plan to create your cluster in a zone in `europe`).
-
 
 Note that the bucket for logs has to be in the same region so you might need to create another one. Remove the old one with `gcloud storage rm -r gs://<BUCKET_FOR_LOGS>`.
 
@@ -183,7 +182,7 @@ That's a long list, there are many images already available. Your new image has 
 
 ### Computing
 
-The script runs a Google Cloud Build process and there's per-minute small [cost](https://cloud.google.com/build/pricing). 120 minutes are included in the [Free tier services](https://cloud.google.com/free/docs/free-cloud-features#free-tier-usage-limits). 
+The script runs a Google Cloud Build process and there's per-minute small [cost](https://cloud.google.com/build/pricing). 120 minutes per day are included in the [Free tier services](https://cloud.google.com/free/docs/free-cloud-features#free-tier-usage-limits). 
 
 ### Storage
 
