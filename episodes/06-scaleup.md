@@ -44,7 +44,7 @@ gcloud container clusters get-credentials <CLUSTER_NAME> --region europe-west4-a
 Run a small test as in the previous section, but set the number of step to one. While the job is running, observe the resources usage with
 
 ```bash
-kubectl get pods
+kubectl top pods -n argo
 ```
 
 The big processing step - with `runpfnano` in the name - defines the resource needs. The output indicates how much CPU (in units of 1/1000 of a CPU) and memory the process consumes. Follow the resource consumption during the job to see how it evolves.
@@ -73,7 +73,7 @@ Once you have understood the resource consumption for a single job, delete the c
 ### Input data
 
 The optimal cluster configuration depends on the input dataset.
-Datasets consist of files, and the number of files can vary. In practical terms, the input to the parallel processing steps is a list of files. Dividing events from input files to different processing steps can be done, but would require a filtering list as an input to the processing.  
+Datasets consist of files, and the number of files can vary. Files consist of events, and the number of events can vary. In practical terms, the input to the parallel processing steps is a list of files to be processed. We do not consider directing events from one file to different processing steps. It could be done, but would require a filtering list as an input to the processing.  
 
 In an ideal case, the parallel steps should take the same amount of time to complete. However, this is usually not the case because
 
@@ -93,7 +93,7 @@ region              = "europe-west4"
 gke_num_nodes       = 30
 ```
 
-Note that as the "zone" (a, b or c in the location name) is not defined, the cluster will have 30 nodes in each zone, in total 90.
+Note that as the "zone" (a, b or c in the location name, e.g. europe-west4-a) is not defined, the cluster will have 30 nodes in each zone, in total 90.
 
 Alternatively, a smaller cluster would be less expensive per unit time but the processing takes a longer. In the benchmarking, a large cluster was found to be practical.
 
@@ -140,17 +140,30 @@ $0.10 per hour.
 
 ### CPU and memory
 
-The cost is determined by the machine and disk type and is per time. 
+The cost is determined by the machine and disk type and is per time. Processing the full [MuonEG MiniAOD dataset](https://opendata.cern.ch/record/30511) with 353 input files running 353 parallel jobs on a 90-node cluster costed around 80 USD and took 7 to 9 hours, depending on the chosen machine type.
+
+The graph shows the time and price for clusters of 12, 24 and 90 nodes, the latter with two different machine types. 
+
+![](fig/time-price-autoscale-cluster.png)
+
+The cost for CPU is more than half of the total price, and the memory contributes one third of it, as shown in this example graph:
+
+![](fig/cost-share.png)
 
 The cluster usage contributes to the cost through data transfer and networking, but for this example case it is minimal.
 
 ### Data download
 
+Downloading the resulting output files would have costed some 40 USD.
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- ...
-- ...
+- The resource request should be set so that one job runs in one vCPU.
+- Basic kubectl command `kubetcl top pods` can be used to inspect the resource consumption during a test job.
+- The optimal number of nodes in a cluster depends on the number of files in the dataset, and it should be chosen so that each job has the same number of files.
+- A large cluster running for a short time was found to be the most convenient.
+- Autoscaling can reduce the cost as it shuts down and deletes the nodes when all jobs on the node have finished.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
