@@ -6,7 +6,7 @@ exercises: 5
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What are public cloud provides?
+- What are public cloud providers?
 - Why would you use them?
 - What is Kubernetes?
 - What else do you need?
@@ -15,7 +15,7 @@ exercises: 5
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the motivation for using Kubernetes cluster from public cloud providers.
+- Explain the motivation for using a Kubernetes cluster from public cloud providers.
 - Explain the tools used to set up the Kubernetes cluster and run the processing workflow.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -57,11 +57,11 @@ In this tutorial, we use `gcloud` commands to create the persistent storage for 
 
 [Terraform](https://www.terraform.io/) is a tool to define, provision, and manage cloud infrastructure using configuration scripts. 
 
-In this tutorial, we use Terraform scripts to create the Kubernetes cluster in a single step. The advantage - compared to plain command-line `gcloud` commands - is that we can easily configure input variables. Also, after the workflow finishes, it is easy to delete the resources in a single step.
+In this tutorial, we use Terraform scripts to create the Kubernetes cluster in a single step. The advantage - compared to plain command-line `gcloud` commands - is that we can easily configure the cluster using input variables. Also, after the workflow finishes, it is easy to delete the resources in a single step.
 
 ## Kubernetes
 
-Kubernetes is a system to managed containerized workflows on computing clusters. `kubectl` is the command-line tool to interact with the cluster resources.
+Kubernetes is a system to manage containerized workflows on computing clusters. `kubectl` is the command-line tool to interact with the cluster resources.
 
 In this tutorial, we use `kubectl` commands to set up some services and to observe the status of the cluster and the data processing workflow. 
 
@@ -107,7 +107,7 @@ Remember that while using Cloud Shell is free, you will need to have credits (or
 
 - Public cloud providers are companies that offer pay-as-you-go computing resources and services over the internet to multiple users or organizations.
 - Terraform is an open-source tool to provision and delete computing infrastructure.
-- Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications and their associated workflows across clusters of hosts..
+- Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications and their associated workflows across clusters of hosts.
 - Argo Workflows is an open-source tool for orchestrating sequential and parallel jobs on Kubernetes.
 
 
