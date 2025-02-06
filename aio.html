@@ -1100,7 +1100,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-04-cluster"><p>Content from <a href="04-cluster.html">Kubernetes cluster</a></p>
 <hr>
-<p>Last updated on 2024-10-21 |
+<p>Last updated on 2025-02-06 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/04-cluster.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1164,8 +1164,8 @@ enable Kubernetes Engine API (container.googleapis.com):</p>
 <div class="section level3">
 <h3 id="bucket">Bucket<a class="anchor" aria-label="anchor" href="#bucket"></a>
 </h3>
-<p>If you worked through Section 02, you have now a storage bucket for
-the output files.</p>
+<p>If you worked through <a href="02-storage.html">Section 02</a>, you
+have now a storage bucket for the output files.</p>
 <p>List the buckets with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1176,8 +1176,8 @@ the output files.</p>
 <div class="section level3">
 <h3 id="secondary-disk">Secondary disk<a class="anchor" aria-label="anchor" href="#secondary-disk"></a>
 </h3>
-<p>If you worked through Section 03, you have a secondary boot disk
-image available</p>
+<p>If you worked through <a href="03-disk-image.html">Section 03</a>,
+you have a secondary boot disk image available</p>
 </div>
 </section><section><h2 class="section-heading" id="get-the-code">Get the code<a class="anchor" aria-label="anchor" href="#get-the-code"></a>
 </h2>
@@ -1214,8 +1214,8 @@ example to</p>
 <span><span class="va">name</span>                <span class="op">=</span> <span class="st">"1"</span></span>
 <span><span class="va">gke_num_nodes</span>       <span class="op">=</span> <span class="fl">2</span></span></code></pre>
 <p>With these parameters, a cluster named <code>cluster-1</code> with 2
-nodes will be created in the region <code>europe-west4-a</code>. You
-must define your GCP project.</p>
+nodes will be created in the region <code>europe-west4-a</code>. Replace
+<code>&lt;PROJECT_ID&gt;</code> with that of your GCP project.</p>
 <p>To create the resources, run</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
