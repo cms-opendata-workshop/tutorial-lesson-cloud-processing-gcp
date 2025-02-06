@@ -328,7 +328,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scale up</h1>
-        <p>Last updated on 2024-10-21 |
+        <p>Last updated on 2025-02-06 |
 
         <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/06-scaleup.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -393,7 +393,7 @@ with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">kubectl</span> get pods</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">kubectl</span> top pods <span class="at">-n</span> argo</span></code></pre>
 </div>
 <p>The big processing step - with <code>runpfnano</code> in the name -
 defines the resource needs. The output indicates how much CPU (in units
@@ -419,11 +419,12 @@ delete the cluster with <code>terraform destroy</code>.</p>
 <hr class="half-width"><div class="section level3">
 <h3 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a></h3>
 <p>The optimal cluster configuration depends on the input dataset.
-Datasets consist of files, and the number of files can vary. In
-practical terms, the input to the parallel processing steps is a list of
-files. Dividing events from input files to different processing steps
-can be done, but would require a filtering list as an input to the
-processing.</p>
+Datasets consist of files, and the number of files can vary. Files
+consist of events, and the number of events can vary. In practical
+terms, the input to the parallel processing steps is a list of files to
+be processed. We do not consider directing events from one file to
+different processing steps. It could be done, but would require a
+filtering list as an input to the processing.</p>
 <p>In an ideal case, the parallel steps should take the same amount of
 time to complete. However, this is usually not the case because</p>
 <ul><li>input files are not equal in size</li>
@@ -440,8 +441,9 @@ full occupation of the cluster.</p>
 <pre><code><span><span class="va">project_id</span>          <span class="op">=</span> <span class="st">"&lt;PROJECT_ID&gt;"</span></span>
 <span><span class="va">region</span>              <span class="op">=</span> <span class="st">"europe-west4"</span></span>
 <span><span class="va">gke_num_nodes</span>       <span class="op">=</span> <span class="fl">30</span></span></code></pre>
-<p>Note that as the “zone” (a, b or c in the location name) is not
-defined, the cluster will have 30 nodes in each zone, in total 90.</p>
+<p>Note that as the “zone” (a, b or c in the location name,
+e.g. europe-west4-a) is not defined, the cluster will have 30 nodes in
+each zone, in total 90.</p>
 <p>Alternatively, a smaller cluster would be less expensive per unit
 time but the processing takes a longer. In the benchmarking, a large
 cluster was found to be practical.</p>
@@ -453,7 +455,7 @@ cluster was found to be practical.</p>
   Insufficient quota?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>GCP sets quotas to resources, and you can either increase them - to a
 certain limit - or request a quota increase.</p>
@@ -497,13 +499,22 @@ $0.10 per hour.</p>
 </div>
 <div class="section level3">
 <h3 id="cpu-and-memory">CPU and memory<a class="anchor" aria-label="anchor" href="#cpu-and-memory"></a></h3>
-<p>The cost is determined by the machine and disk type and is per
-time.</p>
-<p>The cluster usage contributes to the cost through data transfer and
+<p>The cost is determined by the machine and disk type and is per time.
+Processing the full <a href="https://opendata.cern.ch/record/30511" class="external-link">MuonEG MiniAOD dataset</a>
+with 353 input files running 353 parallel jobs on a 90-node cluster
+costed around 80 USD and took 7 to 9 hours, depending on the chosen
+machine type.</p>
+<p>The graph shows the time and price for clusters of 12, 24 and 90
+nodes, the latter with two different machine types.</p>
+<figure><img src="../fig/time-price-autoscale-cluster.png" class="figure mx-auto d-block"></figure><p>The cost for CPU is more than half of the total price, and the memory
+contributes one third of it, as shown in this example graph:</p>
+<figure><img src="../fig/cost-share.png" class="figure mx-auto d-block"></figure><p>The cluster usage contributes to the cost through data transfer and
 networking, but for this example case it is minimal.</p>
 </div>
 <div class="section level3">
 <h3 id="data-download">Data download<a class="anchor" aria-label="anchor" href="#data-download"></a></h3>
+<p>Downloading the resulting output files would have costed some 40
+USD.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -511,8 +522,17 @@ networking, but for this example case it is minimal.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>…</li>
-<li>…</li>
+<ul><li>The resource request should be set so that one job runs in one
+vCPU.</li>
+<li>Basic kubectl command <code>kubetcl top pods</code> can be used to
+inspect the resource consumption during a test job.</li>
+<li>The optimal number of nodes in a cluster depends on the number of
+files in the dataset, and it should be chosen so that each job has the
+same number of files.</li>
+<li>A large cluster running for a short time was found to be the most
+convenient.</li>
+<li>Autoscaling can reduce the cost as it shuts down and deletes the
+nodes when all jobs on the node have finished.</li>
 </ul></div>
 </div>
 </div>
@@ -579,7 +599,7 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/06-scaleup.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/06-scaleup.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2024-10-21",
+  "dateModified": "2025-02-06",
   "datePublished": "2025-02-06"
 }
 

@@ -412,8 +412,17 @@ commands or on Google Cloud Console Web UI.</li>
 </ul></section><section id="06-scaleup"><h2 class="section-heading"><a href="06-scaleup.html">Scale up</a></h2>
 <hr class="half-width">
 <ul>
-<li>…</li>
-<li>…</li>
+<li>The resource request should be set so that one job runs in one
+vCPU.</li>
+<li>Basic kubectl command <code>kubetcl top pods</code> can be used to
+inspect the resource consumption during a test job.</li>
+<li>The optimal number of nodes in a cluster depends on the number of
+files in the dataset, and it should be chosen so that each job has the
+same number of files.</li>
+<li>A large cluster running for a short time was found to be the most
+convenient.</li>
+<li>Autoscaling can reduce the cost as it shuts down and deletes the
+nodes when all jobs on the node have finished.</li>
 </ul></section>
 </div>
     </main>
