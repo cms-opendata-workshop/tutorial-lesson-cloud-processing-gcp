@@ -45,7 +45,7 @@ gcloud services enable container.googleapis.com
 
 ### Bucket
 
-If you worked through Section 02, you have now a storage bucket for the output files.
+If you worked through [Section 02](02-storage.md), you have now a storage bucket for the output files.
 
 List the buckets with
 
@@ -55,7 +55,7 @@ gcloud storage ls
 
 ### Secondary disk
 
-If you worked through Section 03, you have a secondary boot disk image available
+If you worked through [Section 03](03-disk-image.md), you have a secondary boot disk image available
 
 ## Get the code
 
@@ -88,7 +88,7 @@ name                = "1"
 gke_num_nodes       = 2
 ```
 
-With these parameters, a cluster named `cluster-1` with 2 nodes will be created in the region `europe-west4-a`. You must define your GCP project.
+With these parameters, a cluster named `cluster-1` with 2 nodes will be created in the region `europe-west4-a`. Replace `<PROJECT_ID>` with that of your GCP project.
 
 To create the resources, run
 
