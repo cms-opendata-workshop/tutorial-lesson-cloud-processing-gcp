@@ -46,7 +46,7 @@ gcloud storage ls
 
 ### Code
 
-In the [previous section](episodes/04-cluster), you pulled the code and move to the `cloud-processing/standard-gke-cluster-gcs-imgdisk` directory.
+In the [previous section](episodes/04-cluster), you pulled the [code](https://github.com/cms-dpoa/cloud-processing/tree/main/standard-gke-cluster-gcs-imgdisk) and moved to your local `cloud-processing/standard-gke-cluster-gcs-imgdisk` directory.
 
 ### Argo CLI installed?
 
@@ -91,7 +91,7 @@ replicaset.apps/workflow-controller-864c88655d   1         1         1       24s
 
 The data processing example is defined as an Argo workflow. You can learn about Argo Workflows in their [documentation](https://argo-workflows.readthedocs.io/en/latest/).
 
-Every step in the workflow runs in a container, and there several ways to pass the information between the steps.
+Every step in the workflow runs in a container, and there are several ways to pass the information between the steps.
 
 The example configuration in `argo/argo_bucket_run.yaml` has comments to help you to understand how the files and/or parameters can be passed from a step to another.
 
