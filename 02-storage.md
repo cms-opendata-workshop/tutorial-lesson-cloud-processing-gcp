@@ -8,14 +8,14 @@ exercises: 5
 
 - How to create a Google Cloud Storage bucket?
 - What are the basic operations?
-- What are the cost of storage and download?
+- What are the costs of storage and download?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn to create a Google Cloud Storage bucket
-- Learn to list the contents of a bukcet
+- Learn to create a Google Cloud Storage bucket.
+- Learn to list the contents of a bucket.
 - Understand the persistant storage costs.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -46,7 +46,7 @@ The output shows your account and project.
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
 
-### How to change them?
+### How to change the account and the project?
 
 If they are not what you expect (in case you have many), change them with
 
@@ -167,7 +167,7 @@ In the context of this tutorial, the operations costs are insignificant. However
 
 ### Networking and download
 
-[Downloading data](https://cloud.google.com/storage/pricing#network-egress) from the GCS bucket to your computer has a significant cost: the current (October 2024) cost to internet locations (excluding China and Austalia) is $0.12 / GB.
+[Downloading data](https://cloud.google.com/storage/pricing#network-egress) from the GCS bucket to your computer can have a significant cost for large files: the current (October 2024) cost to internet locations (excluding China and Austalia) is $0.12 / GB.
 
 In the context of the example of this tutorial, the resulting output files are approximately 30% of the original MiniAOD dataset volume. For example, downloading the 330 GB ouput from a processing of a 1.1 TB MiniAOD dataset will cost $40.
 
@@ -175,7 +175,7 @@ In the context of the example of this tutorial, the resulting output files are a
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Google Cloud Storage bucket can be used to store the output files.
-- The storage cost depends on the volume stored and for this type of processing is very small. 
+- The storage cost depends on the volume stored and the duration of storage, and for this type of processing is very small. 
 - The download of big output files from the bucket can be costly.
 
 
