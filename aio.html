@@ -312,6 +312,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="07-discussion.html">7. Discussion</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -645,7 +657,7 @@ to use for this work. In your Linux terminal, type</p>
   How to change the account and the project?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>If they are not what you expect (in case you have many), change them
 with</p>
@@ -705,7 +717,7 @@ account.</p>
   How to link a project to your billing account?
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>First list the billing accounts</p>
 <div class="codewrapper sourceCode" id="cb7">
@@ -1757,6 +1769,150 @@ same number of files.</li>
 convenient.</li>
 <li>Autoscaling can reduce the cost as it shuts down and deletes the
 nodes when all jobs on the node have finished.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</div>
+</section></section><section id="aio-07-discussion"><p>Content from <a href="07-discussion.html">Discussion</a></p>
+<hr>
+<p>Last updated on 2025-02-07 |
+
+        <a href="https://github.com/cms-opendata-workshop/tutorial-lesson-cloud-processing-gcp/edit/main/episodes/07-discussion.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What was the user experience?</li>
+<li>What worked well?</li>
+<li>What difficulties were observed?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Share the practical user experience with CMS open data and GCP while
+preparing for this tutorial.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="what-works-well">What works well?<a class="anchor" aria-label="anchor" href="#what-works-well"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="general-setup">General setup<a class="anchor" aria-label="anchor" href="#general-setup"></a>
+</h3>
+<p>Implementing the processing workflow in the cloud environment was
+easy thanks to the availability of the CMSSW, CERN Open data client and
+ROOT software containers. Argo Workflows, being native for cloud
+environments, is well-adapted for the workflow definition on Kubernetes
+resources.</p>
+</div>
+<div class="section level3">
+<h3 id="google-cloud-platform-and-google-kubernetes-engine">Google Cloud Platform and Google Kubernetes Engine<a class="anchor" aria-label="anchor" href="#google-cloud-platform-and-google-kubernetes-engine"></a>
+</h3>
+<p>From the technical point of view, running the workflow was smooth. It
+was our choice to work mainly with the command-line tool
+(<code>gcloud</code>) to achieve a longer lifetime of validity compared
+to instructions through a graphical UI. The provider-specific part of
+the Terraform resource provisioning scripts were reasonably well
+documented.</p>
+<p>The resources were relatively stable, and we observed only few
+cluster-related failures during all the benchmarking process, which
+consisted of several processing runs over an entire dataset and numerous
+shorter runs.</p>
+<p>Building the image disk with the large software container
+pre-installed worked fine using tools in a GitHub repository linked in
+the Google Cloud documentation.</p>
+<p>Features such as autoscaling helps reduce costs and are easy to
+setup.</p>
+<p>Further savings could be achieved with “spot” resources,
+i.e. selecting cheaper nodes that can get deleted without notice. That
+would require some further work for bookkeeping so that the failed jobs
+on deleted nodes could easily be restarted.</p>
+</div>
+<div class="section level3">
+<h3 id="data-access">Data access<a class="anchor" aria-label="anchor" href="#data-access"></a>
+</h3>
+<p>Data access through XRootD (streaming from the CERN open data eos
+area) was relatively stable. However, some failures were observed during
+the long runs, but diminished considerably after an update of resources
+on the CERN Open data eos file system side.</p>
+<p>It should be noted that we requested as much CPU for the jobs as they
+would need when running non-parallel. That was basically on job per
+vCPU. Pushing more jobs on one vCPU can easily make jobs fail as they
+starting compete for resources, and data access can fail due to
+timeout.</p>
+</div>
+</section><section><h2 class="section-heading" id="what-difficulties-were-observed">What difficulties were observed?<a class="anchor" aria-label="anchor" href="#what-difficulties-were-observed"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="google-cloud-platform">Google Cloud Platform<a class="anchor" aria-label="anchor" href="#google-cloud-platform"></a>
+</h3>
+<p>It is useful to acknowledge that the testing was done on a Google
+account with a CERN email that had been used for CERN-related work
+earlier, and with a 5000 USD worth total credit available. When
+necessary, quota requests to increase the number of nodes and to use
+more performant machine types were immediately approved.</p>
+<p>The final testing for these instructions were done with a fresh
+Google account connected to an institute email. We observed that the
+available quota, for example, for number of nodes or vCPUs was very low,
+and the quota increase request was not possible through the submission
+form that was available earlier. We got no reply (or wrong replies) from
+the Google support despite several inquiries, and were not able to
+increase the quota close to any useful value for a large-scale
+(i.e. full dataset) processing.</p>
+<p>This leaves us very perplexed about the possibility of using Google
+Cloud Platform for small-scale processing by individual researchers.
+While we observed that - technically - deploying the resources, setting
+up the workflow and running the processing was very smooth, the
+usability might be limited by the lack of support as quota increase
+requires human intervention from the Google support staff. The goal of
+this work was to show how cloud resources can be used for a short-term
+need of powerful resources with a moderate cost, but this does not seem
+to be in the interest of Google as a service provider.</p>
+<p>If there is interest, we can repeat this exercise with other cloud
+providers.</p>
+</div>
+<div class="section level3">
+<h3 id="data-access-1">Data access<a class="anchor" aria-label="anchor" href="#data-access-1"></a>
+</h3>
+<p>While rare, data access timeouts occur. As a test case, we processed
+a full dataset with 352 files and after the server-side update, most
+jobs ran through without failures. However, some datasets are larger and
+a proper bookkeeping should be added for the failed jobs.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Technically, deploying the resources, setting up the workflow and
+running the processing on Google Cloud Platform was very smooth.</li>
+<li>Final testing on a new Google Cloud account revealed problems with
+resource quota increase requests, i.e. the willingness of Google support
+to help small customers.</li>
 </ul>
 </div>
 </div>
