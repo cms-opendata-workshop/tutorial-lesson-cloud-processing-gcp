@@ -41,7 +41,21 @@ gcloud container clusters get-credentials <CLUSTER_NAME> --region europe-west4-a
 
 ### Run a test job
 
-Run a small test as in the previous section, but set the number of step to one. While the job is running, observe the resources usage with
+Run a small test as in the previous section, but set the number of parallel jobs to one. The corresponding input parameter in `argo/argo_bucket_run.yaml  ` is
+
+```
+- name: nJobs
+      # Number of jobs the processing workflow should be split into
+      value: 1
+```
+
+Submit the workflow with
+
+```bash
+argo submit -n argo argo/argo_bucket_run.yaml
+```
+
+While the job is running, observe the resources usage with
 
 ```bash
 kubectl top pods -n argo
@@ -73,9 +87,11 @@ Once you have understood the resource consumption for a single job, delete the c
 ### Input data
 
 The optimal cluster configuration depends on the input dataset.
-Datasets consist of files, and the number of files can vary. Files consist of events, and the number of events can vary. In practical terms, the input to the parallel processing steps is a list of files to be processed. We do not consider directing events from one file to different processing steps. It could be done, but would require a filtering list as an input to the processing.  
+Datasets consist of files, and the number of files can vary. Files consist of events, and the number of events can vary. 
 
-In an ideal case, the parallel steps should take the same amount of time to complete. However, this is usually not the case because
+In practical terms, the input to the parallel processing steps is a list of files to be processed. We do not consider directing events from one file to different processing steps. It could be done, but would require a filtering list as an input to the processing.  
+
+In an ideal case, the parallel steps should take the same amount of time to complete. That would guarantee that the resources are used efficiently so that no idle nodes - for which we still pay for - remain while the longer jobs still continue. However, this is usually not the case because
 
 - input files are not equal in size
 - processing time per events can vary.
@@ -114,11 +130,17 @@ Error waiting for creating GKE cluster: Insufficient quota to satisfy the reques
 
 If that happens, go to the [Quotas & System Limits page](https://console.cloud.google.com/iam-admin/quotas) at the Google Cloud Console. The link is also in the error message. Search for quotas that you need to increase. 
 
-For a cluster with a big number of nodes, you must increase the quotas for "CPUs" and "In-use regional external IPv4 addresses".
+For a cluster with a big number of nodes, you must increase the quotas for "CPUs" and "In-use regional external IPv4 addresses". You might see something like this:
+
+![](fig/quota-table.png)
+
+(In this case, the number of CPUs was increased, but the cluster creation failes because "In-use regional external IPv4 addresses" was too low.)
 
 Once you find the quota line, click on the three vertical dots and choose "Edit quota".
 
-If you can't increase them to desired value, submit a quota increase request through this form. You will receive an email with increase request approved (or rarely denied if the location is down in resources). It is usually immediate, but takes some minutes to propagate.
+If you can't increase them to desired value, submit a quota increase request through the form as explained in the [Google Cloud quota documentation](https://cloud.google.com/docs/quotas/view-manage#requesting_higher_quota). You will receive an email with increase request approved (or rarely denied if the location is down in resources). It is usually immediate, but takes some minutes to propagate.
+
+If the editable limits are too low and you cannot find the form, read to the discussion in the [next section](07-discussion.md). 
  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -126,9 +148,7 @@ If you can't increase them to desired value, submit a quota increase request thr
 ### Autoscaling
 
 The Terraform script `gke.tf` has the autoscaling activated.
-This makes the cluster scale up or down according to resources in use. This reduces the cost in particular for a cluster with a big amount of nodes. It often happens that some jobs get longer than the other, and in that case the cluster lifetime (and the cost) is defined by the longest job. Autoscaling removes the nodes once they do not have active processes running.
-
-
+This makes the cluster scale up or down according to resources in use. This reduces the cost in particular for a cluster with a big amount of nodes. It often happens that some jobs run longer than the others, and in that case the cluster lifetime (and the cost) is defined by the longest job. Autoscaling removes the nodes once they do not have active processes running.
 
 
 ## Costs
