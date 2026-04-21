@@ -376,7 +376,7 @@
         <!-- START: inst/pkgdown/templates/content-extra.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <main id="main-content" class="main-content"><div class="container lesson-content">
-        
+        <h1>All in One View</h1>
         
 <section id="aio-01-intro"><p>Content from <a href="01-intro.html">Introduction</a></p>
 <hr>
@@ -646,7 +646,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
@@ -666,7 +666,7 @@ with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> config set project <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> config set project <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="accounts">Accounts<a class="anchor" aria-label="anchor" href="#accounts"></a>
@@ -675,13 +675,13 @@ with</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> auth list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">gcloud</span> auth list</span></code></pre>
 </div>
 <p>If you get none or your account does not appear in the list, run</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gcloud</span> init</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">gcloud</span> init</span></code></pre>
 </div>
 <p>and follow the steps in the output.</p>
 </div>
@@ -692,7 +692,7 @@ with</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> projects list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">gcloud</span> projects list</span></code></pre>
 </div>
 </div>
 </div>
@@ -723,20 +723,20 @@ account.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> billing accounts list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> billing accounts list</span></code></pre>
 </div>
 <p>Take the account id from the output, and check if your project is
 linked to it</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects list <span class="at">--billing-account</span> <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">gcloud</span> billing projects list <span class="at">--billing-account</span> <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>If not, link your project to this account with</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -759,26 +759,26 @@ storage, additional costs and delay may occur.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">gcloud</span> storage buckets create gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span> --location europe-west4</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">gcloud</span> storage buckets create gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span> --location europe-west4</span></code></pre>
 </div>
 <p>You can test copying a file to it with</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> test <span class="op">&gt;</span> test.txt</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">gcloud</span> storage cp test.txt gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="bu">echo</span> test <span class="op">&gt;</span> test.txt</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">gcloud</span> storage cp test.txt gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/</span></code></pre>
 </div>
 <p>and list the contents of the bucket with</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">gcloud</span> storage ls gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">*</span></span></code></pre>
 </div>
 <p>You can remove the file with</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">gcloud</span> storage rm gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/test.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">gcloud</span> storage rm gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/test.txt</span></code></pre>
 </div>
 <p>Note that the bucket is tied to your GCP project and you can only
 access it when authenticated.</p>
@@ -894,7 +894,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 </div>
@@ -921,13 +921,13 @@ list them with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--enabled</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> services list <span class="at">--enabled</span></span></code></pre>
 </div>
 <p>You can list all available services with</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--available</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">gcloud</span> services list <span class="at">--available</span></span></code></pre>
 </div>
 <p>but that’s a long list!</p>
 <p>To build a disk image, you will need to <a href="https://cloud.google.com/endpoints/docs/openapi/enable-api#enabling_an_api" class="external-link">enable</a>
@@ -936,14 +936,14 @@ Cloud Build API (cloudbuild.googleapis.com) and Compute Engine API
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable cloudbuild.googleapis.com compute.googleapis.com</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">gcloud</span> services enable cloudbuild.googleapis.com compute.googleapis.com</span></code></pre>
 </div>
 <p>When services are enabled, some “service accounts” with specific
 roles get created. You can list them with</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> projects get-iam-policy <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">gcloud</span> projects get-iam-policy <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>Often, the resources need to work with each other. In this case, the
 Cloud Build service builds the image and writes it to an image disk.
@@ -953,12 +953,12 @@ access Compute resources (the image disk belongs to that category).</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.serviceAgent</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.serviceAgent</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -968,7 +968,7 @@ access Compute resources (the image disk belongs to that category).</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre>
 </div>
 <p>and authenticate in the browser window that opens.</p>
 </div>
@@ -995,7 +995,7 @@ installed.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
 </div>
 <p>The script will create a secondary disk images with the container
 images that are needed in the processing workflow:</p>
@@ -1039,7 +1039,7 @@ registry address starting with <code>docker.io</code>
   Error: Quota exceeded?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Failure with errors of type</p>
 <pre><code>Code: QUOTA_EXCEEDED
@@ -1066,7 +1066,7 @@ images with</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">gcloud</span> compute images list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">gcloud</span> compute images list</span></code></pre>
 </div>
 <p>That’s a long list, there are many images already available. Your new
 image has your project name under “PROJECT” and
@@ -1156,7 +1156,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 </div>
@@ -1170,7 +1170,7 @@ enable Kubernetes Engine API (container.googleapis.com):</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable container.googleapis.com</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">gcloud</span> services enable container.googleapis.com</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1182,7 +1182,7 @@ have now a storage bucket for the output files.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1200,8 +1200,8 @@ you have a secondary boot disk image available</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="about-terraform">About Terraform<a class="anchor" aria-label="anchor" href="#about-terraform"></a>
 </h2>
@@ -1232,7 +1232,7 @@ nodes will be created in the region <code>europe-west4-a</code>. Replace
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">terraform</span> apply</span></code></pre>
 </div>
 <p>and confirm “yes”.</p>
 </section><section><h2 class="section-heading" id="connect-to-the-cluster-and-inspect">Connect to the cluster and inspect<a class="anchor" aria-label="anchor" href="#connect-to-the-cluster-and-inspect"></a>
@@ -1243,20 +1243,20 @@ with</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>You can inspect the cluster with <code>kubectl</code> commands, for
 example the nodes:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
 </div>
 <p>and the namespaces:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
 </div>
 <p>You will see several namespaces, and most of them are used by
 Kubernetes for different services. We will be using the
@@ -1359,7 +1359,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 </div>
@@ -1372,7 +1372,7 @@ now a storage bucket for the output files.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1395,31 +1395,31 @@ directory.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-n</span> argo  <span class="at">-f</span> https://github.com/argoproj/argo-workflows/releases/download/v3.5.10/install.yaml</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/service_account.yaml</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role.yaml</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role_binding.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">kubectl</span> apply <span class="at">-n</span> argo  <span class="at">-f</span> https://github.com/argoproj/argo-workflows/releases/download/v3.5.10/install.yaml</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/service_account.yaml</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role.yaml</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">kubectl</span> apply <span class="at">-f</span> argo/argo_role_binding.yaml</span></code></pre>
 </div>
 <p>Wait for the services to start.</p>
 <p>You should see the following:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> kubectl get all <span class="at">-n</span> argo</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">NAME</span>                                       READY   STATUS    RESTARTS   AGE</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">pod/argo-server-5f7b589d6f-jkf4z</span>           1/1     Running   0          24s</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">pod/workflow-controller-864c88655d-wsfr8</span>   1/1     Running   0          24s</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">NAME</span>                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>    <span class="ex">AGE</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">service/argo-server</span>   ClusterIP   34.118.233.69   <span class="op">&lt;</span>none<span class="op">&gt;</span>        2746/TCP   25s</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">NAME</span>                                  READY   UP-TO-DATE   AVAILABLE   AGE</span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">deployment.apps/argo-server</span>           1/1     1            1           24s</span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">deployment.apps/workflow-controller</span>   1/1     1            1           24s</span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="ex">NAME</span>                                             DESIRED   CURRENT   READY   AGE</span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="ex">replicaset.apps/argo-server-5f7b589d6f</span>           1         1         1       24s</span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="ex">replicaset.apps/workflow-controller-864c88655d</span>   1         1         1       24s</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">$</span> kubectl get all <span class="at">-n</span> argo</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="ex">NAME</span>                                       READY   STATUS    RESTARTS   AGE</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="ex">pod/argo-server-5f7b589d6f-jkf4z</span>           1/1     Running   0          24s</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="ex">pod/workflow-controller-864c88655d-wsfr8</span>   1/1     Running   0          24s</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="ex">NAME</span>                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="er">(</span><span class="ex">S</span><span class="kw">)</span>    <span class="ex">AGE</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="ex">service/argo-server</span>   ClusterIP   34.118.233.69   <span class="op">&lt;</span>none<span class="op">&gt;</span>        2746/TCP   25s</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a><span class="ex">NAME</span>                                  READY   UP-TO-DATE   AVAILABLE   AGE</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a><span class="ex">deployment.apps/argo-server</span>           1/1     1            1           24s</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a><span class="ex">deployment.apps/workflow-controller</span>   1/1     1            1           24s</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a><span class="ex">NAME</span>                                             DESIRED   CURRENT   READY   AGE</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a><span class="ex">replicaset.apps/argo-server-5f7b589d6f</span>           1         1         1       24s</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a><span class="ex">replicaset.apps/workflow-controller-864c88655d</span>   1         1         1       24s</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="about-argo-workflows">About Argo Workflows<a class="anchor" aria-label="anchor" href="#about-argo-workflows"></a>
 </h2>
@@ -1467,26 +1467,26 @@ that they are</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
 </div>
 <p>Observe its progress with</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">argo</span> get <span class="at">-n</span> argo @latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">argo</span> get <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
 <p>Once done, check the ouput in the bucket with</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> gcloud storage ls gs://<span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">**</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/files_30511.txt</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/1.logs</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/2.logs</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_num_cands.png</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_pdgid_cands.png</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput1.root</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput2.root</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">$</span> gcloud storage ls gs://<span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">**</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/files_30511.txt</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/1.logs</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/logs/2.logs</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_num_cands.png</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/plots/h_pdgid_cands.png</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput1.root</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a><span class="ex">gs://</span><span class="op">&lt;</span>YOUR_BUCKET_NAME<span class="op">&gt;</span>/pfnano/30511/scatter/pfnanooutput2.root</span></code></pre>
 </div>
 <p>You can copy the files with <code>gcloud storage cp ...</code>.</p>
 <div class="section level3">
@@ -1497,7 +1497,7 @@ accumulate. They are not running anymore but still visible.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">argo</span> delete <span class="at">-n</span> argo @latest</span></code></pre>
 </div>
 <p>Do not delete the cluster if you plan to continue to the <a href="06-scaleup">next section</a>, but do not keep it idle. The cost
 goes by the time it exists, not by the time it is in use. You can always
@@ -1506,7 +1506,7 @@ create a new cluster.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">terraform</span> destroy</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">terraform</span> destroy</span></code></pre>
 </div>
 <p>Confirm with “yes”.</p>
 </div>
@@ -1597,14 +1597,14 @@ new one. Set the number of nodes <code>gke_num_nodes</code> to 2 in the
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">terraform</span> apply</span></code></pre>
 </div>
 <p>and confirm “yes”.</p>
 <p>Connect to it with</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -1620,13 +1620,13 @@ parallel jobs to one. The corresponding input parameter in
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">argo</span> submit <span class="at">-n</span> argo argo/argo_bucket_run.yaml</span></code></pre>
 </div>
 <p>While the job is running, observe the resources usage with</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">kubectl</span> top pods <span class="at">-n</span> argo</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">kubectl</span> top pods <span class="at">-n</span> argo</span></code></pre>
 </div>
 <p>The big processing step - with <code>runpfnano</code> in the name -
 defines the resource needs. The output indicates how much CPU (in units
@@ -1697,7 +1697,7 @@ cluster was found to be practical.</p>
   Insufficient quota?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>GCP sets quotas to resources, and you can either increase them - to a
 certain limit - or request a quota increase.</p>
@@ -1968,7 +1968,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -1991,8 +1991,8 @@ any links that you are not going to use.
   "url": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/aio.html",
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/aio.html",
   "dateCreated": "2024-10-10",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

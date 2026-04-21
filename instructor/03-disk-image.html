@@ -232,7 +232,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#why-a-disk-image">Why a disk image?</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
@@ -391,7 +391,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 </div>
@@ -415,13 +415,13 @@ list them with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--enabled</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> services list <span class="at">--enabled</span></span></code></pre>
 </div>
 <p>You can list all available services with</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> services list <span class="at">--available</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">gcloud</span> services list <span class="at">--available</span></span></code></pre>
 </div>
 <p>but that’s a long list!</p>
 <p>To build a disk image, you will need to <a href="https://cloud.google.com/endpoints/docs/openapi/enable-api#enabling_an_api" class="external-link">enable</a>
@@ -430,14 +430,14 @@ Cloud Build API (cloudbuild.googleapis.com) and Compute Engine API
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable cloudbuild.googleapis.com compute.googleapis.com</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">gcloud</span> services enable cloudbuild.googleapis.com compute.googleapis.com</span></code></pre>
 </div>
 <p>When services are enabled, some “service accounts” with specific
 roles get created. You can list them with</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> projects get-iam-policy <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">gcloud</span> projects get-iam-policy <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>Often, the resources need to work with each other. In this case, the
 Cloud Build service builds the image and writes it to an image disk.
@@ -447,12 +447,12 @@ access Compute resources (the image disk belongs to that category).</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.serviceAgent</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.serviceAgent</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">gcloud</span> projects add-iam-policy-binding <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --member serviceAccount:<span class="op">&lt;</span>PROJECT_NR<span class="op">&gt;</span>@cloudbuild.gserviceaccount.com <span class="at">--role</span> roles/compute.admin</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -461,7 +461,7 @@ access Compute resources (the image disk belongs to that category).</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">gcloud</span> auth application-default login</span></code></pre>
 </div>
 <p>and authenticate in the browser window that opens.</p>
 </div>
@@ -484,7 +484,7 @@ installed.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">go</span> run ./cli <span class="at">--project-name</span><span class="op">=&lt;</span>PROJECT_ID<span class="op">&gt;</span> --image-name=pfnano-disk-image <span class="at">--zone</span><span class="op">=</span>europe-west4-a <span class="at">--gcs-path</span><span class="op">=</span>gs://<span class="op">&lt;</span>BUCKET_FOR_LOGS<span class="op">&gt;</span> --disk-size-gb=50 <span class="at">--container-image</span><span class="op">=</span>docker.io/cernopendata/cernopendata-client:latest <span class="at">--container-image</span><span class="op">=</span>docker.io/rootproject/root:latest  <span class="at">--container-image</span><span class="op">=</span>ghcr.io/cms-dpoa/pfnano-image-build:main <span class="at">--timeout</span> 100m</span></code></pre>
 </div>
 <p>The script will create a secondary disk images with the container
 images that are needed in the processing workflow:</p>
@@ -526,7 +526,7 @@ registry address starting with <code>docker.io</code>
   Error: Quota exceeded?
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Failure with errors of type</p>
 <pre><code>Code: QUOTA_EXCEEDED
@@ -553,7 +553,7 @@ images with</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">gcloud</span> compute images list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">gcloud</span> compute images list</span></code></pre>
 </div>
 <p>That’s a long list, there are many images already available. Your new
 image has your project name under “PROJECT” and
@@ -627,7 +627,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -650,7 +650,7 @@ any links that you are not going to use.
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/instructor/03-disk-image.html",
   "dateCreated": "2024-10-10",
   "dateModified": "2025-02-06",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

@@ -241,7 +241,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#get-the-code">Get the code</a></li>
@@ -383,7 +383,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 </div>
@@ -396,7 +396,7 @@ enable Kubernetes Engine API (container.googleapis.com):</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">gcloud</span> services enable container.googleapis.com</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">gcloud</span> services enable container.googleapis.com</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -407,7 +407,7 @@ have now a storage bucket for the output files.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> storage ls</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -422,8 +422,8 @@ you have a secondary boot disk image available</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">git</span> clone git@github.com:cms-dpoa/cloud-processing.git</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="bu">cd</span> cloud-processing/standard-gke-cluster-gcs-imgdisk</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="about-terraform">About Terraform<a class="anchor" aria-label="anchor" href="#about-terraform"></a></h2>
 <hr class="half-width"><p>The resources are created by <a href="https://developer.hashicorp.com/terraform?product_intent=terraform" class="external-link">Terraform</a>
@@ -450,7 +450,7 @@ nodes will be created in the region <code>europe-west4-a</code>. Replace
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">terraform</span> apply</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">terraform</span> apply</span></code></pre>
 </div>
 <p>and confirm “yes”.</p>
 </section><section><h2 class="section-heading" id="connect-to-the-cluster-and-inspect">Connect to the cluster and inspect<a class="anchor" aria-label="anchor" href="#connect-to-the-cluster-and-inspect"></a></h2>
@@ -459,20 +459,20 @@ with</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> container clusters get-credentials <span class="op">&lt;</span>CLUSTER_NAME<span class="op">&gt;</span> --region europe-west4-a <span class="at">--project</span> <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>You can inspect the cluster with <code>kubectl</code> commands, for
 example the nodes:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">kubectl</span> get nodes</span></code></pre>
 </div>
 <p>and the namespaces:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">kubectl</span> get ns</span></code></pre>
 </div>
 <p>You will see several namespaces, and most of them are used by
 Kubernetes for different services. We will be using the
@@ -557,7 +557,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -580,7 +580,7 @@ any links that you are not going to use.
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/04-cluster.html",
   "dateCreated": "2024-10-10",
   "dateModified": "2025-02-06",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>

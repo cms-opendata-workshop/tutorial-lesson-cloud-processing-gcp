@@ -223,7 +223,7 @@
       </button>
     </div><!--/div.accordion-header-->
 
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#storage-for-the-output-files">Storage for the output files</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
@@ -401,7 +401,7 @@ to use for this work. In your Linux terminal, type</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">gcloud</span> config list</span></code></pre>
 </div>
 <p>The output shows your account and project.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
@@ -421,7 +421,7 @@ with</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">gcloud</span> config set project <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">gcloud</span> config set project <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="accounts">Accounts<a class="anchor" aria-label="anchor" href="#accounts"></a></h4>
@@ -429,13 +429,13 @@ with</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gcloud</span> auth list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">gcloud</span> auth list</span></code></pre>
 </div>
 <p>If you get none or your account does not appear in the list, run</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gcloud</span> init</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">gcloud</span> init</span></code></pre>
 </div>
 <p>and follow the steps in the output.</p>
 </div>
@@ -445,7 +445,7 @@ with</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gcloud</span> projects list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">gcloud</span> projects list</span></code></pre>
 </div>
 </div>
 </div>
@@ -475,20 +475,20 @@ account.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">gcloud</span> billing accounts list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">gcloud</span> billing accounts list</span></code></pre>
 </div>
 <p>Take the account id from the output, and check if your project is
 linked to it</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects list <span class="at">--billing-account</span> <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">gcloud</span> billing projects list <span class="at">--billing-account</span> <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 <p>If not, link your project to this account with</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">gcloud</span> billing projects link <span class="op">&lt;</span>PROJECT_ID<span class="op">&gt;</span> --billing-account <span class="op">&lt;</span>ACCOUNT_ID<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -508,26 +508,26 @@ storage, additional costs and delay may occur.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">gcloud</span> storage buckets create gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span> --location europe-west4</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">gcloud</span> storage buckets create gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span> --location europe-west4</span></code></pre>
 </div>
 <p>You can test copying a file to it with</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> test <span class="op">&gt;</span> test.txt</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">gcloud</span> storage cp test.txt gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="bu">echo</span> test <span class="op">&gt;</span> test.txt</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">gcloud</span> storage cp test.txt gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/</span></code></pre>
 </div>
 <p>and list the contents of the bucket with</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">gcloud</span> storage ls gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">gcloud</span> storage ls gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/<span class="pp">*</span></span></code></pre>
 </div>
 <p>You can remove the file with</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">gcloud</span> storage rm gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/test.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">gcloud</span> storage rm gs://<span class="op">&lt;</span>BUCKET_NAME<span class="op">&gt;</span>/test.txt</span></code></pre>
 </div>
 <p>Note that the bucket is tied to your GCP project and you can only
 access it when authenticated.</p>
@@ -617,7 +617,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/cms-opendata-workshop/varnish/tree/405b7a74ee1b2fc89c3e49e116ce96d4d65182b3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -640,7 +640,7 @@ any links that you are not going to use.
   "identifier": "https://cms-opendata-workshop.github.io/tutorial-lesson-cloud-processing-gcp/02-storage.html",
   "dateCreated": "2024-10-10",
   "dateModified": "2025-02-06",
-  "datePublished": "2026-04-14"
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
